@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='author' content='Collin Stedman'>
+    <meta name='viewport' content='width=device-width'>
+
+    <title>{{ page.title }}</title>
+
+    <!-- syntax highlighting CSS -->
+    <link rel='stylesheet' href='/css/syntax.css'>
+
+    <!-- Pure CSS -->
+    <link rel='stylesheet' href='/css/pure-min.css'>
+
+    <!-- Page CSS -->
+    <link rel='stylesheet' href='/css/main.css'>
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+
+    <!-- Icons -->
+    <link rel='stylesheet' href='/css/fontello.css'>
+
+    <!-- Favicon -->
+    <link rel='icon' type='image/x-icon' href='/favicon.ico'>
+  </head>
+  <body>
+    <div id='layout'>
+
+      <!-- Sidebar menu -->
+      {% include menu.html %}
+
+      <!-- Main content -->
+      <div id='content'>
+
+        <!-- Logo SVG and text -->
+        {% include logo.html %}
+
+        {{ content }}
+
+        <!-- Bottom bar -->
+        {% include footer.html %}
+      </div>
+    </div>
+    <script type='application/javascript' src='/js/hammer.min.js'></script>
+    <script type='application/javascript' src='/js/ui.js'></script>
+  </body>
+</html>

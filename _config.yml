@@ -1,0 +1,22 @@
+name: NODENEXUS
+markdown: 'redcarpet'
+redcarpet:
+    extensions: 
+      -
+        'smart'
+highlighter: 'pygments'
+paginate: 5
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Collin Stedman"

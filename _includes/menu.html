@@ -1,0 +1,42 @@
+<!-- Button for the menu on small screens -->
+<a id='menu-link'>
+  <span></span>
+</a>
+
+<!-- Menu -->
+<div id='menu'>
+
+  <!-- Post menu -->
+  <div class='pure-menu pure-menu-open'>
+    <ul>
+      {% for post in site.posts %}
+      <li>
+        {% if post.id == page.id %}
+          <a class='pure-menu-selected' href={{ post.url }}>{{ post.title }}</a>
+        {% else %}
+          <a href={{ post.url }}>{{ post.title }}</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Social icons -->
+  <div class='social'>
+    <hr class='left'/>
+    <hr class='right'/>
+    <a href='https://github.com/kronion'>
+      <span class='icon-github-circled'></span>
+    </a>
+    <a href='https://twitter.com/CS_Princeton'>
+      <span class='icon-twitter-circled'></span>
+    </a>
+    <a href='https://www.linkedin.com/in/cstedman'>
+      <span class='icon-linkedin-circled'></span>
+    </a>
+  </div>
+
+</div>
+
+<div id='lightbox'>
+</div>

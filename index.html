@@ -1,0 +1,174 @@
+---
+layout: default
+title: Nodenexus
+---
+
+<ul class='posts'>
+  {% for post in paginator.posts %}
+    <li>
+      <a href='{{ post.url }}'><h1>{{ post.title }}</h1></a>
+      <p class='meta'>{{ post.author }} &middot; {{ post.date | date_to_string }}</p>
+      <div class='post'>
+        {% if post.excerpt != '' %}
+          {% capture link %} <a href='{{ post.url }}'>Continue</a></p>{% endcapture %}
+          {{ post.excerpt | replace_first:'</p>',link | markdownify }}
+        {% else %}
+          {{ post.content }}
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+
+{% if paginator.total_pages > 1 %}
+<ul class='pure-paginator'>
+  <li>
+    {% if paginator.previous_page %}
+      <a class='pure-button' href='{{ paginator.previous_page_path }}'>&laquo;</a>
+    {% else %}
+      <a class='pure-button pure-button-disabled'>&laquo;</a>
+    {% endif %}
+  </li>
+
+  {% if paginator.total_pages < 6 %}
+    {% if paginator.total_pages < 4 %}
+      {% for page in (1..paginator.total_pages) %}
+        <li>
+          {% if page == paginator.page %}
+            <a class='pure-button pure-button-active'>{{ page }}</a>
+          {% elsif page == 1 %}
+            <a class='pure-button' href='/'>{{ page }}</a>
+          {% else %}
+            <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    {% else %}
+      {% if paginator.page == 1 or paginator.page == 2 %}
+        {% for page in (1..paginator.total_pages) %}
+          <li>
+            {% if page == paginator.page %}
+              <a class='pure-button pure-button-active'>{{ page }}</a>
+            {% elsif page == 1 %}
+              <a class='pure-button' href='/'>{{ page }}</a>
+            {% elsif page == 4 or page == 5 %}
+              <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% else %}
+              <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      {% elsif paginator.page == 3 %}
+        {% for page in (1..paginator.total_pages) %}
+          <li>
+            {% if page == paginator.page %}
+              <a class='pure-button pure-button-active'>{{ page }}</a>
+            {% elsif page == 1 %}
+              <a class='pure-button button-hidden' href='/'>{{ page }}</a>
+            {% elsif page == 5 %}
+              <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% else %}
+              <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      {% else %}
+        {% for page in (1..paginator.total_pages) %}
+          <li>
+            {% if page == paginator.page %}
+              <a class='pure-button pure-button-active'>{{ page }}</a>
+            {% elsif page == 1 %}
+              <a class='pure-button button-hidden' href='/'>{{ page }}</a>
+            {% elsif page == 2 %}
+              {% if paginator.total_pages == 5 %}
+                <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+              {% else %}
+                <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+              {% endif %}
+            {% else %}
+              <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  {% else %}
+    {% assign threeFromEnd = paginator.total_pages | minus:2 %}
+    {% assign fourFromEnd = paginator.total_pages | minus:3 %}
+    {% assign fiveFromEnd = paginator.total_pages | minus:4 %}
+    {% assign twoLeft     = paginator.page | minus:2 %}
+    {% assign twoRight    = paginator.page | plus:2 %}
+    {% if paginator.page < 4 %}
+      {% for page in (1..5) %}
+        <li>
+          {% if page == paginator.page %}
+            <a class='pure-button pure-button-active'>{{ page }}</a>
+          {% elsif page == 1 %}
+            {% if paginator.page == 3 %}
+              <a class='pure-button button-hidden' href='/'>{{ page }}</a>
+            {% else %}
+              <a class='pure-button' href='/'>{{ page }}</a>
+            {% endif %}
+          {% elsif page == 4 %}
+            {% if paginator.page == 3 %}
+              <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% else %}
+              <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% endif %}
+          {% elsif page == 5 %}
+            <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+          {% else %}
+            <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    {% elsif paginator.page > fourFromEnd %}
+      {% for page in (fiveFromEnd..paginator.total_pages) %}
+        <li>
+          {% if page == paginator.page %}
+            <a class='pure-button pure-button-active'>{{ page }}</a>
+          {% elsif page == fiveFromEnd %}
+            <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+          {% elsif page == fourFromEnd %}
+            {% if paginator.page == threeFromEnd %}
+              <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% else %}
+              <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% endif %}
+          {% elsif page == paginator.total_pages %}
+            {% if paginator.page == threeFromEnd %}
+              <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% else %}
+              <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            {% endif %}
+          {% else %}
+            <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    {% else %}
+      {% for page in (twoLeft..twoRight) %}
+        <li>
+          {% if page == paginator.page %}
+            <a class='pure-button pure-button-active'>{{ page }}</a>
+          {% elsif page == 1 %}
+            <a class='pure-button' href='/'>{{ page }}</a>
+          {% elsif page == twoLeft or page == twoRight %}
+            <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+          {% else %}
+            <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+    
+  <li>
+    {% if paginator.next_page %}
+      <a class='pure-button' href='{{ paginator.next_page_path }}'>&raquo;</a>
+    {% else %}
+      <a class='pure-button pure-button-disabled'>&raquo;</a>
+    {% endif %}
+  </li>
+</ul>
+{% endif %}
