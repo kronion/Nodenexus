@@ -6,11 +6,11 @@ title: Nodenexus
 <ul class='posts'>
   {% for post in paginator.posts %}
     <li>
-      <a href='{{ site.baseurl }}{{ post.url }}'><h1>{{ post.title }}</h1></a>
+      <a href='{{ post.url }}'><h1>{{ post.title }}</h1></a>
       <p class='meta'>{{ post.author }} &middot; {{ post.date | date_to_string }}</p>
       <div class='post'>
         {% if post.excerpt != '' %}
-          {% capture link %} <a href='{{ site.baseurl }}{{ post.url }}'>Continue</a></p>{% endcapture %}
+          {% capture link %} <a href='{{ post.url }}'>Continue</a></p>{% endcapture %}
           {{ post.excerpt | replace_first:'</p>',link | markdownify }}
         {% else %}
           {{ post.content }}
@@ -24,7 +24,7 @@ title: Nodenexus
 <ul class='pure-paginator'>
   <li>
     {% if paginator.previous_page %}
-      <a class='pure-button' href='{{ site.baseurl }}{{ paginator.previous_page_path }}'>&laquo;</a>
+      <a class='pure-button' href='{{ paginator.previous_page_path }}'>&laquo;</a>
     {% else %}
       <a class='pure-button pure-button-disabled'>&laquo;</a>
     {% endif %}
@@ -37,7 +37,7 @@ title: Nodenexus
           {% if page == paginator.page %}
             <a class='pure-button pure-button-active'>{{ page }}</a>
           {% elsif page == 1 %}
-            <a class='pure-button' href='{{ site.baseurl }}'>{{ page }}</a>
+            <a class='pure-button' href='/'>{{ page }}</a>
           {% else %}
             <a class='pure-button' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
           {% endif %}
@@ -50,7 +50,7 @@ title: Nodenexus
             {% if page == paginator.page %}
               <a class='pure-button pure-button-active'>{{ page }}</a>
             {% elsif page == 1 %}
-              <a class='pure-button' href='{{ site.baseurl }}'>{{ page }}</a>
+              <a class='pure-button' href='/'>{{ page }}</a>
             {% elsif page == 4 or page == 5 %}
               <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
             {% else %}
@@ -64,7 +64,7 @@ title: Nodenexus
             {% if page == paginator.page %}
               <a class='pure-button pure-button-active'>{{ page }}</a>
             {% elsif page == 1 %}
-              <a class='pure-button button-hidden' href='{{ site.baseurl }}'>{{ page }}</a>
+              <a class='pure-button button-hidden' href='/'>{{ page }}</a>
             {% elsif page == 5 %}
               <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
             {% else %}
@@ -78,7 +78,7 @@ title: Nodenexus
             {% if page == paginator.page %}
               <a class='pure-button pure-button-active'>{{ page }}</a>
             {% elsif page == 1 %}
-              <a class='pure-button button-hidden' href='{{ site.baseurl }}'>{{ page }}</a>
+              <a class='pure-button button-hidden' href='/'>{{ page }}</a>
             {% elsif page == 2 %}
               {% if paginator.total_pages == 5 %}
                 <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
@@ -105,9 +105,9 @@ title: Nodenexus
             <a class='pure-button pure-button-active'>{{ page }}</a>
           {% elsif page == 1 %}
             {% if paginator.page == 3 %}
-              <a class='pure-button button-hidden' href='{{ site.baseurl }}'>{{ page }}</a>
+              <a class='pure-button button-hidden' href='/'>{{ page }}</a>
             {% else %}
-              <a class='pure-button' href='{{ site.baseurl }}'>{{ page }}</a>
+              <a class='pure-button' href='/'>{{ page }}</a>
             {% endif %}
           {% elsif page == 4 %}
             {% if paginator.page == 3 %}
@@ -152,7 +152,7 @@ title: Nodenexus
           {% if page == paginator.page %}
             <a class='pure-button pure-button-active'>{{ page }}</a>
           {% elsif page == 1 %}
-            <a class='pure-button' href='{{ site.baseurl }}'>{{ page }}</a>
+            <a class='pure-button' href='/'>{{ page }}</a>
           {% elsif page == twoLeft or page == twoRight %}
             <a class='pure-button button-hidden' href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
           {% else %}
@@ -165,7 +165,7 @@ title: Nodenexus
     
   <li>
     {% if paginator.next_page %}
-      <a class='pure-button' href='{{ site.baseurl }}{{ paginator.next_page_path }}'>&raquo;</a>
+      <a class='pure-button' href='{{ paginator.next_page_path }}'>&raquo;</a>
     {% else %}
       <a class='pure-button pure-button-disabled'>&raquo;</a>
     {% endif %}

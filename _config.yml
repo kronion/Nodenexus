@@ -20,4 +20,3 @@ defaults:
     values:
       layout: "post"
       author: "Collin Stedman"
-baseurl: '/Nodenexus'
