@@ -53,12 +53,14 @@
       }, 10);
       setTimeout(function () {
         lightbox.style.opacity = '0.15';
+        lightbox.style.marginLeft = '270px';
       }, 50);
     }
     // If layout was already active, hide menu and remove blur
     else {
       swiped_in = false;
       lightbox.style.opacity = '0';
+      lightbox.style.marginLeft = '0px';
       setTimeout(function () {
         body.style.overflow = 'visible';
         lightbox.style.display = 'none';
@@ -79,7 +81,7 @@
       contentTabIndex = -1;
     }
     var menuLinks = document.querySelectorAll('#menu a');
-    var contentLinks = document.querySelectorAll('.content a');
+    var contentLinks = document.querySelectorAll('#content a');
     for (var i = 0; i < menuLinks.length; i++) {
       menuLinks[i].tabIndex = menuTabIndex;
     }

@@ -12,9 +12,9 @@
 html, body { height: 100%; }
 
 body {
-  width: 100vw;
+  width: 100%;
   min-width: 320px;
-  background-color: #fff;
+  background: #fff;
   font-size: small; /* Define all font sizes relatively */
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 
 code {
   padding: 0.1em 0.2em;
-  background-color: #ddd;
+  background: #ddd;
   font-family: 'Droid Sans Mono', Courier New, monospace;
 }
 
@@ -77,22 +77,36 @@ li { list-style-type: none }
   top: 0;
   left: 0;
   bottom: 0;
-  width: 270px;
+  width: 320px;
   margin-left: -270px; 
-  color: #fff;
-  background: #000;
-  z-index: 1000; 
-  overflow-y: auto;
+  z-index: 1; 
   /* -webkit-overflow-scrolling: touch; */
+
+  /* Make the menu unselectable */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
   #menu a {
     color: #fff;
   }
-  #menu span {
-    color: #ee7f2d;
-  }
   /* Override the default Pure menu style */
-  #menu > .pure-menu {
+
+/* The menu as the user understands it (i.e. excluding the panning region */
+#menu-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 270px;
+  color: #fff;
+  background: #000;
+  overflow-y: auto; 
+}
+  #menu-content > .pure-menu {
     position: absolute;
     top: 100px;
     width: 100%;
@@ -100,29 +114,36 @@ li { list-style-type: none }
     background: transparent;
   }
     /* Light separating border between menu groups */
-    #menu > .pure-menu > ul {
+    #menu-content > .pure-menu > ul {
       font-size: smaller;
       border-top: 1px solid #333;
     }
       /* Menu hover/focus color */
-      #menu > .pure-menu li > a:hover,
-      #menu > .pure-menu li > a:focus {
+      #menu-content > .pure-menu li > a:hover,
+      #menu-content > .pure-menu li > a:focus {
         background: #333;
         text-decoration: none;
       }
       /* Selected menu item */
-      #menu > .pure-menu li > a.pure-menu-selected {
+      #menu-content > .pure-menu li > a.pure-menu-selected {
         background: #555;
       }
 
-/*----------------------------------------------------------------------------*/
-/* Menu link for responsive toggle                                            */
-/*----------------------------------------------------------------------------*/
+#menu-drag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  background: #fff;
+}
+
+/* Menu link for responsive toggle */
 #menu-link {
-  position: fixed;
+  position: absolute;
   display: block; 
   top: 0;
-  left: 0; 
+  right: 0; 
   width: 21px;
   height: auto;
   padding: 20px 15px;
@@ -137,7 +158,7 @@ li { list-style-type: none }
   #menu-link:focus > span,
   #menu-link:focus > span:before,
   #menu-link:focus > span:after {
-    background-color: #ee7f2d;
+    background: #ee7f2d;
   }
   #menu-link > span,
   #menu-link > span:before,
@@ -146,7 +167,7 @@ li { list-style-type: none }
     display: block;
     width: 100%;
     height: 0.2em;
-    background-color: #fff;
+    background: #fff;
     text-align: left;
   }
   #menu-link > span:before,
@@ -167,6 +188,7 @@ li { list-style-type: none }
   width: 100%;
   margin-top: 30px;
   text-align: center;
+  z-index: 0;
 }
   .social > a {
     text-decoration: none;
@@ -177,10 +199,15 @@ li { list-style-type: none }
     width: 25px;
     height: 5px;
     border-style: solid;
-    border-color: #ee7f2d;
-    background-color: #ee7f2d;
+    border: #ee7f2d;
+    background: #ee7f2d;
     z-index: -1;
   }
+
+  .social span {
+    color: #ee7f2d;
+  }
+
   .social > .left {
     left: 95px;
   }
@@ -214,8 +241,9 @@ li { list-style-type: none }
   height: 100%;
   top: 0;
   left: 0;
+  margin-left: 0px;
   opacity: 0;
-  background-color: #000;
+  background: #000;
   z-index: 1;
   display: none;
   cursor: pointer;
@@ -319,15 +347,15 @@ li { list-style-type: none }
 .post pre {
   margin: 1em 0;
   padding: 0 .4em;
-  background-color: #ddd;
+  background: #ddd;
 }
   /* Terminal style. Make a plugin for this! */
   .post pre.terminal {
     color: #FFF;
-    background-color: #333;
+    background: #333;
   }
   .post pre.terminal code {
-    background-color: #333;
+    background: #333;
   }
 
 /* This affects code blocks only */
