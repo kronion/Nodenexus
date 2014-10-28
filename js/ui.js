@@ -1,6 +1,8 @@
 (function (window, document) {
 
+  /*-----------*/
   /* Variables */
+  /*-----------*/
   /* DOM elements */
   var layout   = document.getElementById('layout'),
       menu     = document.getElementById('menu'),
@@ -8,6 +10,7 @@
       lightbox = document.getElementById('lightbox'),
       content  = document.getElementById('content'),
       body     = document.body;
+  var transElements = [ layout, menu, menuLink, lightbox, content ];
 
   /* Size, in pixels, of the largest tablet screen */
   var menuCutoff = 767;
@@ -16,18 +19,14 @@
   var locked = false;
 
   /* Toggle for whether or not menu is visible */
-  var swiped_in = false;
+  var menuVisible = false;
 
+  /* Indicates that CSS transitions have been enabled for key DOM elements */
+  var transitionsActive = false;
+
+  /*-----------*/
   /* Functions */
-  /* Add CSS transitions to DOM element */
-  function addTransition(e) {
-    var rule = "all 0.5s ease-out";
-    e.style['transition'] = rule;
-    e.style['-ms-transition'] = rule;
-    e.style['-o-transition'] = rule;
-    e.style['-webkit-transition'] = rule;
-  }
-
+  /*-----------*/
   /* Add or remove 'active' class from #layout */
   function toggleActive() {
     var classes = layout.className.split(/\s+/),
@@ -44,24 +43,24 @@
     if (length === classes.length) {
       classes.push('active');
       lightbox.style.display = 'block';
-      swiped_in = true;
+      menuVisible = true;
 
       // Separate timeouts because of Firefox bug where opacity doesn't
       // transition when display is also changed
-      setTimeout(function () {
+      setTimeout(function() {
         body.style.overflow = 'hidden';
       }, 10);
-      setTimeout(function () {
+      setTimeout(function() {
         lightbox.style.opacity = '0.15';
         lightbox.style.marginLeft = '270px';
       }, 50);
     }
     // If layout was already active, hide menu and remove blur
     else {
-      swiped_in = false;
+      menuVisible = false;
       lightbox.style.opacity = '0';
       lightbox.style.marginLeft = '0px';
-      setTimeout(function () {
+      setTimeout(function() {
         body.style.overflow = 'visible';
         lightbox.style.display = 'none';
       }, 500);
@@ -74,10 +73,10 @@
   function tabOrderToggle() {
     var menuTabIndex = -1;
     var contentTabIndex = 0;
-    if (body.clientWidth > menuCutoff || swiped_in) {
+    if (body.clientWidth > menuCutoff || menuVisible) {
       menuTabIndex = 0;
     }
-    if (body.clientWidth < menuCutoff && swiped_in) {
+    if (body.clientWidth < menuCutoff && menuVisible) {
       contentTabIndex = -1;
     }
     var menuLinks = document.querySelectorAll('#menu a');
@@ -92,7 +91,7 @@
 
   /* Simulate menu link button click */
   function swipe_in(intent) {
-    if (swiped_in !== intent) {
+    if (menuVisible !== intent) {
       menuLink.onclick();
     }
   }
@@ -104,7 +103,7 @@
         locked = true;
         toggleActive();
         tabOrderToggle();
-        setTimeout(function () {
+        setTimeout(function() {
           locked = false;
         }, 500);
       }
@@ -113,7 +112,7 @@
   lightbox.onclick = menuLink.onclick;
 
   /* Remove active state from layout if screen resizes */
-  window.onresize = function () {
+  window.onresize = function() {
     if (body.clientWidth > menuCutoff) {
       var classes = layout.className.split(/\s+/),
           length = classes.length;
@@ -125,8 +124,9 @@
         }
       }
       layout.className = classes.join(' ');
-      swiped_in = false;
+      menuVisible = false;
       lightbox.style.opacity = '0';
+      lightbox.style.marginLeft = '0px';
       setTimeout(function() {
         lightbox.style.display = 'none';
         body.style.overflow = 'visible';
@@ -135,28 +135,53 @@
     tabOrderToggle();
   };
 
+  /* Add CSS transitions to key DOM elements */
+  function addTransitions() {
+    for (var i = 0; i < transElements.length; i++) {
+      transElements[i].style.transition = "all 0.5s ease-out";
+    }
+    transitionsActive = true;
+  }
+
+  function removeTransitions() {
+    for (var i = 0; i < transElements.length; i++) {
+      transElements[i].style.transition = "none";
+    }
+    transitionsActive = false;
+  }
+
   /* Add transitions for menu to push in and out, but wait for page to draw */
   document.addEventListener('DOMContentLoaded', function(e) {
     setTimeout(function() {
-      addTransition(layout);
-      addTransition(menu);
-      addTransition(menuLink);
-      addTransition(lightbox);
-      addTransition(content);
+      addTransitions();
     }, 200);
   });
 
   /* Hammer.js touch handlers */
-  delete Hammer.defaults.cssProps.userSelect; /* Allow users to select text */
-  var layout_swipe = new Hammer(layout);
-  layout_swipe.on('swipe', function (e) {
+  var menu_pan = new Hammer(layout);
+  // delete Hammer.defaults.cssProps.userSelect; /* Allow users to select text */
+
+  menu_pan.on('panmove', function(e) {
+
+    var deltaX = e.deltaX;
+    menu.style.left = deltaX + 'px';
+    layout.style.left = deltaX + 'px';
     if (e.direction === Hammer.DIRECTION_LEFT) {
-      swipe_in(false);
+      if (menuVisible) {
+      }                
+      // swipe_in(false);
     }
     else if (e.direction === Hammer.DIRECTION_RIGHT) {
-      swipe_in(true);
+      if (!menuVisible) {
+      }
+      // swipe_in(true);
     }
   });
+  // menu_pan.off('pan');
+  
+  menu_pan.on('panend', function(e) {
 
+  });
+  
   tabOrderToggle();
 }(this, this.document));
