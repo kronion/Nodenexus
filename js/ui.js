@@ -98,6 +98,7 @@
 
   /* Menu animation */
   menuLink.onclick = function () {
+    console.log('clicked');
     if (body.clientWidth <= menuCutoff) {
       if (!locked) {
         locked = true;
@@ -114,6 +115,8 @@
   /* Remove active state from layout if screen resizes */
   window.onresize = function() {
     if (body.clientWidth > menuCutoff) {
+      menu_pan.off('panmove', panning);
+      menu_pan.off('panend', panTransitions);
       var classes = layout.className.split(/\s+/),
           length = classes.length;
 
@@ -131,6 +134,9 @@
         lightbox.style.display = 'none';
         body.style.overflow = 'visible';
       }, 500);
+    }
+    else {
+      enablePan();
     }
     tabOrderToggle();
   };
@@ -150,19 +156,33 @@
     transitionsActive = false;
   }
 
-  /* Add transitions for menu to push in and out, but wait for page to draw */
-  document.addEventListener('DOMContentLoaded', function(e) {
-    setTimeout(function() {
-      addTransitions();
-    }, 200);
-  });
-
   /* Hammer.js touch handlers */
+  delete Hammer.defaults.cssProps.userSelect; /* Allow users to select text */
   var menu_pan = new Hammer(layout);
-  // delete Hammer.defaults.cssProps.userSelect; /* Allow users to select text */
+  var lightboxPan = new Hammer(lightbox);
+  lightboxPan.on('panmove', function(e) {
+    console.log('lightbox moved');
+    lightbox.onclick = null;
+  });
+  // lightboxPan.on('panend', function(e) {
+    // lightbox.onclick = menuLink.onclick;
+  // });
 
-  menu_pan.on('panmove', function(e) {
+  function panTransitions() {
+    if (!transitionsActive) {
+      addTransitions();
+    }
+    toggleActive();
+  }
 
+  function panning(e) {
+    console.log('here');
+    if (e.pointerType === 'mouse') {
+      // What do I do here?
+    }
+    if (transitionsActive) {
+      removeTransitions();
+    }
     var deltaX = e.deltaX;
     menu.style.left = deltaX + 'px';
     layout.style.left = deltaX + 'px';
@@ -176,12 +196,25 @@
       }
       // swipe_in(true);
     }
-  });
-  // menu_pan.off('pan');
-  
-  menu_pan.on('panend', function(e) {
+  }
 
-  });
+  function enablePan() {
+    menu_pan.on('panmove', panning);
+    menu_pan.on('panend', panTransitions);
+  }
   
+  // Do all preconfiguration here!!!
+  // What is the device size!
   tabOrderToggle();
+
+  /* Add transitions for menu to push in and out, but wait for page to draw */
+  document.addEventListener('DOMContentLoaded', function(e) {
+    if (body.clientWidth <= menuCutoff) {
+      enablePan();
+    }
+    setTimeout(function() {
+      addTransitions();
+    }, 200);
+  });
+
 }(this, this.document));
