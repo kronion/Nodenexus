@@ -57,13 +57,13 @@ li { list-style-type: none }
       left: 270px;
   }
     #layout.active > #menu {
-      left: 270px;
+      left: 271px;
     }
     #layout.active > #menu > #menu-drag {
       display: none;
     }
     #layout.active > #menu-link {
-      left: 269px;
+      left: 270px;
     }
     #layout.active > #content {
       -webkit-filter: blur(0.7px);
@@ -81,8 +81,9 @@ li { list-style-type: none }
   top: 0;
   left: 0;
   bottom: 0;
-  width: 270px;
-  margin-left: -270px; 
+  width: 271px;
+  margin-left: -271px; 
+  background: #000;
   z-index: 2; 
   /* -webkit-overflow-scrolling: touch; */
 

@@ -48,10 +48,6 @@
       // Separate timeouts because of Firefox bug where opacity doesn't
       // transition when display is also changed
       setTimeout(function() {
-        body.style.overflow = 'visible';
-        body.style.overflow = 'hidden';
-      }, 600);
-      setTimeout(function() {
         lightbox.style.opacity = '0.15';
         lightbox.style.left = '270px';
       }, 50);
@@ -61,7 +57,6 @@
       menuVisible = false;
       lightbox.style.opacity = '0';
       lightbox.style.left = '0px';
-      // body.style.overflow = 'visible';
       setTimeout(function() {
         lightbox.style.display = 'none';
       }, 500);
@@ -125,8 +120,6 @@
       lightbox.style.left = '0px';
       setTimeout(function() {
         lightbox.style.display = 'none';
-        body.style.overflow = 'visible';
-        body.style.overflow = 'hidden';
       }, 500);
     }
     else {
