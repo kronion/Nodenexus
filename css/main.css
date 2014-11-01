@@ -12,12 +12,12 @@
 html, body { height: 100%; }
 
 body {
+  position: fixed;
   width: 100%;
   min-width: 320px;
   background: #fff;
   font-size: small; /* Define all font sizes relatively */
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
