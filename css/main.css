@@ -82,7 +82,7 @@ li { list-style-type: none }
   bottom: 0;
   width: 270px;
   margin-left: -270px; 
-  z-index: 1; 
+  z-index: 2; 
   /* -webkit-overflow-scrolling: touch; */
 
   /* Make the menu unselectable */
