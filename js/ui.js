@@ -44,11 +44,11 @@
       classes.push('active');
       lightbox.style.display = 'block';
       menuVisible = true;
+      body.style.overflow = 'hidden';
 
       // Separate timeouts because of Firefox bug where opacity doesn't
       // transition when display is also changed
       setTimeout(function() {
-        body.style.overflow = 'hidden';
       }, 5000);
       setTimeout(function() {
         lightbox.style.opacity = '0.15';
@@ -60,8 +60,8 @@
       menuVisible = false;
       lightbox.style.opacity = '0';
       lightbox.style.left = '0px';
+      body.style.overflow = 'visible';
       setTimeout(function() {
-        body.style.overflow = 'visible';
         lightbox.style.display = 'none';
       }, 500);
     }
