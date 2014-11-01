@@ -12,13 +12,13 @@
 html, body { height: 100%; }
 
 body {
-  position: fixed;
+  position: fixed; /* Hold body still in the viewframe */
   width: 100%;
   min-width: 320px;
   background: #fff;
   font-size: small; /* Define all font sizes relatively */
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  overflow: hidden;
+  overflow: hidden; /* Helps with performance on mobile */
 }
 
 h1, h2, h3, h4, h5, h6 {

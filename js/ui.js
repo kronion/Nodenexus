@@ -21,9 +21,6 @@
   /* Toggle for whether or not menu is visible */
   var menuVisible = false;
 
-  /* Indicates that CSS transitions have been enabled for key DOM elements */
-  var transitionsActive = false;
-
   /*-----------*/
   /* Functions */
   /*-----------*/
@@ -133,56 +130,43 @@
     for (var i = 0; i < transElements.length; i++) {
       transElements[i].style.transition = "all 0.5s ease-out";
     }
-    transitionsActive = true;
   }
 
   function removeTransitions() {
     for (var i = 0; i < transElements.length; i++) {
       transElements[i].style.transition = "none";
     }
-    transitionsActive = false;
   }
 
   /* Hammer.js touch handlers */
   delete Hammer.defaults.cssProps.userSelect; /* Allow users to select text */
   var menuPan = new Hammer(menu);
-  menuPan.on('panmove', panning);
-  menuPan.on('panend', panRelease);
+  menuPan.on('panstart', panstart);
+  menuPan.on('panmove', panmove);
+  menuPan.on('panend', panend);
   var lightboxPan = new Hammer(lightbox);
+  lightboxPan.on('panstart', panstart);
   lightboxPan.on('panmove', function(e) {
-    console.log('lightbox moved');
     lightbox.onclick = null;
+    panmove(e);
   });
-  // lightboxPan.on('panend', function(e) {
-    // lightbox.onclick = menuLink.onclick;
-  // });
+  lightboxPan.on('panend', function(e) {
+    panend(e);
+    lightbox.onclick = menuLink.onclick;
+  });
 
-  function panRelease(e) {
+  function panstart(e) {
     if (e.pointerType === 'mouse') {
       return;
     }
-    if (!transitionsActive) {
-      addTransitions();
-    }
-    layout.style.left = null;
-    menu.style.left = null;
-    menuLink.style.left = null;
-    lightbox.style.left = null;
-    if (e.deltaX > 135 && !menuVisible) {
-      toggleActive();
-    }
-    else if (e.deltaX < -135 && menuVisible) {
-      toggleActive();
-    }
+    removeTransitions();
+    lightbox.style.display = 'block';
   }
 
   /* Fluidly move the menu and layout during pan on non-desktop devices */
-  function panning(e) {
+  function panmove(e) {
     if (e.pointerType === 'mouse') {
       return;
-    }
-    if (transitionsActive) {
-      removeTransitions();
     }
     var menuWidth = menu.clientWidth - 1; // Due to stupid Chrome overflow fix
     if (!menuVisible) {
@@ -192,6 +176,7 @@
       menu.style.left = delta + 'px';
       menuLink.style.left = delta + 'px';
       lightbox.style.left = delta + 'px';
+      lightbox.style.opacity = String(0.15 * (delta / menuWidth));
     }
     else if (menuVisible) {
       var delta = (-menuWidth > e.deltaX) ? -menuWidth : e.deltaX;
@@ -200,12 +185,30 @@
       menu.style.left = (menuWidth + delta) + 'px';
       menuLink.style.left = (menuWidth + delta) + 'px';
       lightbox.style.left = (menuWidth + delta) + 'px';
+      lightbox.style.opacity = String(0.15 * (1 + (delta / menuWidth)));
     }
   }
 
-  // Do all preconfiguration here!!!
-  // What is the device size!
-  tabOrderToggle();
+  /* Perform normal animations upon completion of pan */
+  function panend(e) {
+    if (e.pointerType === 'mouse') {
+      return;
+    }
+    addTransitions();
+    layout.style.left = null;
+    menu.style.left = null;
+    menuLink.style.left = null;
+    lightbox.style.left = null;
+    lightbox.style.display = null;
+    if (e.deltaX > 135 && !menuVisible) {
+      toggleActive();
+    }
+    else if (e.deltaX < -135 && menuVisible) {
+      toggleActive();
+    }
+  }
+
+  tabOrderToggle(); /* Is this in the right place?? */
 
   /* Add transitions for menu to push in and out, but wait for page to draw */
   document.addEventListener('DOMContentLoaded', function(e) {
