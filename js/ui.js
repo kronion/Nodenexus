@@ -10,7 +10,7 @@
       lightbox = document.getElementById('lightbox'),
       content  = document.getElementById('content'),
       body     = document.body;
-  var transElements = [ layout, menu, menuLink, lightbox, content ];
+  var transElements = [ layout, menu, menuLink, lightbox ];
 
   /* Size, in pixels, of the largest tablet screen */
   var menuCutoff = 767;
@@ -41,15 +41,15 @@
 
     // If layout was not already active, reveal menu and blur content
     if (length === classes.length) {
-      setTimeout(function() {
-        body.style.overflow = 'hidden';
-      }, 600);
       classes.push('active');
       lightbox.style.display = 'block';
       menuVisible = true;
 
       // Separate timeouts because of Firefox bug where opacity doesn't
       // transition when display is also changed
+      setTimeout(function() {
+        body.style.overflow = 'hidden';
+      }, 510);
       setTimeout(function() {
         lightbox.style.opacity = '0.15';
         lightbox.style.left = '270px';
