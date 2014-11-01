@@ -52,14 +52,14 @@
       }, 10);
       setTimeout(function() {
         lightbox.style.opacity = '0.15';
-        lightbox.style.marginLeft = '270px';
+        lightbox.style.left = '270px';
       }, 50);
     }
     // If layout was already active, hide menu and remove blur
     else {
       menuVisible = false;
       lightbox.style.opacity = '0';
-      lightbox.style.marginLeft = '0px';
+      lightbox.style.left = '0px';
       setTimeout(function() {
         body.style.overflow = 'visible';
         lightbox.style.display = 'none';
@@ -89,13 +89,6 @@
     }
   }
 
-  /* Simulate menu link button click */
-  function swipe_in(intent) {
-    if (menuVisible !== intent) {
-      menuLink.onclick();
-    }
-  }
-
   /* Menu animation */
   menuLink.onclick = function () {
     console.log('clicked');
@@ -115,8 +108,7 @@
   /* Remove active state from layout if screen resizes */
   window.onresize = function() {
     if (body.clientWidth > menuCutoff) {
-      menu_pan.off('panmove', panning);
-      menu_pan.off('panend', panTransitions);
+      menuPan.set({ enable: false });
       var classes = layout.className.split(/\s+/),
           length = classes.length;
 
@@ -129,14 +121,14 @@
       layout.className = classes.join(' ');
       menuVisible = false;
       lightbox.style.opacity = '0';
-      lightbox.style.marginLeft = '0px';
+      lightbox.style.left = '0px';
       setTimeout(function() {
         lightbox.style.display = 'none';
         body.style.overflow = 'visible';
       }, 500);
     }
     else {
-      enablePan();
+      menuPan.set({ enable: true });
     }
     tabOrderToggle();
   };
@@ -158,7 +150,9 @@
 
   /* Hammer.js touch handlers */
   delete Hammer.defaults.cssProps.userSelect; /* Allow users to select text */
-  var menu_pan = new Hammer(layout);
+  var menuPan = new Hammer(menu);
+  menuPan.on('panmove', panning);
+  menuPan.on('panend', panRelease);
   var lightboxPan = new Hammer(lightbox);
   lightboxPan.on('panmove', function(e) {
     console.log('lightbox moved');
@@ -168,49 +162,59 @@
     // lightbox.onclick = menuLink.onclick;
   // });
 
-  function panTransitions() {
+  function panRelease(e) {
+    if (e.pointerType === 'mouse') {
+      return;
+    }
     if (!transitionsActive) {
       addTransitions();
     }
-    toggleActive();
+    layout.style.left = null;
+    menu.style.left = null;
+    menuLink.style.left = null;
+    lightbox.style.left = null;
+    if (e.deltaX > 135 && !menuVisible) {
+      toggleActive();
+    }
+    else if (e.deltaX < -135 && menuVisible) {
+      toggleActive();
+    }
   }
 
+  /* Fluidly move the menu and layout during pan on non-desktop devices */
   function panning(e) {
-    console.log('here');
     if (e.pointerType === 'mouse') {
-      // What do I do here?
+      return;
     }
     if (transitionsActive) {
       removeTransitions();
     }
-    var deltaX = e.deltaX;
-    menu.style.left = deltaX + 'px';
-    layout.style.left = deltaX + 'px';
-    if (e.direction === Hammer.DIRECTION_LEFT) {
-      if (menuVisible) {
-      }                
-      // swipe_in(false);
+    if (!menuVisible) {
+      var delta = (e.deltaX > menu.clientWidth) ? menu.clientWidth : e.deltaX;
+      delta = (delta < 0) ? 0 : delta;
+      layout.style.left = delta + 'px';
+      menu.style.left = delta + 'px';
+      menuLink.style.left = delta + 'px';
+      lightbox.style.left = delta + 'px';
     }
-    else if (e.direction === Hammer.DIRECTION_RIGHT) {
-      if (!menuVisible) {
-      }
-      // swipe_in(true);
+    else if (menuVisible) {
+      var delta = (-menu.clientWidth > e.deltaX) ? -menu.clientWidth : e.deltaX;
+      delta = (delta > 0) ? 0 : delta;
+      layout.style.left = (menu.clientWidth + delta) + 'px';
+      menu.style.left = (menu.clientWidth + delta) + 'px';
+      menuLink.style.left = (menu.clientWidth + delta) + 'px';
+      lightbox.style.left = (menu.clientWidth + delta) + 'px';
     }
   }
 
-  function enablePan() {
-    menu_pan.on('panmove', panning);
-    menu_pan.on('panend', panTransitions);
-  }
-  
   // Do all preconfiguration here!!!
   // What is the device size!
   tabOrderToggle();
 
   /* Add transitions for menu to push in and out, but wait for page to draw */
   document.addEventListener('DOMContentLoaded', function(e) {
-    if (body.clientWidth <= menuCutoff) {
-      enablePan();
+    if (body.clientWidth > menuCutoff) {
+      menuPan.set({ enable: false });
     }
     setTimeout(function() {
       addTransitions();

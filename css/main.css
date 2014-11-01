@@ -58,6 +58,9 @@ li { list-style-type: none }
     #layout.active > #menu {
       left: 270px;
     }
+    #layout.active > #menu > #menu-drag {
+      display: none;
+    }
     #layout.active > #menu-link {
       left: 269px;
     }
@@ -77,7 +80,7 @@ li { list-style-type: none }
   top: 0;
   left: 0;
   bottom: 0;
-  width: 320px;
+  width: 270px;
   margin-left: -270px; 
   z-index: 1; 
   /* -webkit-overflow-scrolling: touch; */
@@ -132,10 +135,10 @@ li { list-style-type: none }
 #menu-drag {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -50px;
   bottom: 0;
   width: 50px;
-  background: #fff;
+  background: transparent;
 }
 
 /* Menu link for responsive toggle */
@@ -412,6 +415,10 @@ li { list-style-type: none }
   /* Display menu */
   #menu {
     left: 270px;
+  }
+
+  #menu-drag {
+    display: none;
   }
 
   #menu-link {
