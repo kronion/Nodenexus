@@ -43,7 +43,7 @@
     if (length === classes.length) {
       setTimeout(function() {
         body.style.overflow = 'hidden';
-      }, 1000);
+      }, 510);
       classes.push('active');
       lightbox.style.display = 'block';
       menuVisible = true;
