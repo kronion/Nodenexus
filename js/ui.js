@@ -49,7 +49,7 @@
       // transition when display is also changed
       setTimeout(function() {
         body.style.overflow = 'hidden';
-      }, 50);
+      }, 5000);
       setTimeout(function() {
         lightbox.style.opacity = '0.15';
         lightbox.style.left = '270px';
