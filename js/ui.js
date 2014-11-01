@@ -184,8 +184,9 @@
     if (transitionsActive) {
       removeTransitions();
     }
+    var menuWidth = menu.clientWidth - 1; // Due to stupid Chrome overflow fix
     if (!menuVisible) {
-      var delta = (e.deltaX > menu.clientWidth) ? menu.clientWidth : e.deltaX;
+      var delta = (e.deltaX > menuWidth) ? menuWidth : e.deltaX;
       delta = (delta < 0) ? 0 : delta;
       layout.style.left = delta + 'px';
       menu.style.left = delta + 'px';
@@ -193,12 +194,12 @@
       lightbox.style.left = delta + 'px';
     }
     else if (menuVisible) {
-      var delta = (-menu.clientWidth > e.deltaX) ? -menu.clientWidth : e.deltaX;
+      var delta = (-menuWidth > e.deltaX) ? -menuWidth : e.deltaX;
       delta = (delta > 0) ? 0 : delta;
-      layout.style.left = (menu.clientWidth + delta) + 'px';
-      menu.style.left = (menu.clientWidth + delta) + 'px';
-      menuLink.style.left = (menu.clientWidth + delta) + 'px';
-      lightbox.style.left = (menu.clientWidth + delta) + 'px';
+      layout.style.left = (menuWidth + delta) + 'px';
+      menu.style.left = (menuWidth + delta) + 'px';
+      menuLink.style.left = (menuWidth + delta) + 'px';
+      lightbox.style.left = (menuWidth + delta) + 'px';
     }
   }
 

@@ -57,7 +57,7 @@ li { list-style-type: none }
       left: 270px;
   }
     #layout.active > #menu {
-      left: 271px;
+      left: 270px;
     }
     #layout.active > #menu > #menu-drag {
       display: none;
@@ -81,8 +81,8 @@ li { list-style-type: none }
   top: 0;
   left: 0;
   bottom: 0;
-  width: 271px;
-  margin-left: -271px; 
+  width: 271px; /* One extra pixel to make sure menu is drawn by Chrome :( */
+  margin-left: -270px; 
   background: #000;
   z-index: 2; 
   /* -webkit-overflow-scrolling: touch; */
