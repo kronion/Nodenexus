@@ -41,10 +41,12 @@
 
     // If layout was not already active, reveal menu and blur content
     if (length === classes.length) {
+      setTimeout(function() {
+        body.style.overflow = 'hidden';
+      }, 100);
       classes.push('active');
       lightbox.style.display = 'block';
       menuVisible = true;
-      body.style.overflow = 'hidden';
 
       // Separate timeouts because of Firefox bug where opacity doesn't
       // transition when display is also changed
