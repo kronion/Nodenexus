@@ -199,12 +199,21 @@
     menu.style.left = null;
     menuLink.style.left = null;
     lightbox.style.left = null;
-    lightbox.style.display = null;
-    if (e.deltaX > 135 && !menuVisible) {
-      toggleActive();
+    if (!menuVisible) {
+      if (e.deltaX > 135) {
+        toggleActive();
+      }
+      else {
+        lightbox.style.opacity = '0';
+      }
     }
-    else if (e.deltaX < -135 && menuVisible) {
-      toggleActive();
+    else if (menuVisible) {
+      if (e.deltaX < -135) {
+        toggleActive();
+      }
+      else {
+        lightbox.style.opacity = '0.15';
+      }
     }
   }
 
