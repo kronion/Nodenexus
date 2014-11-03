@@ -208,7 +208,7 @@
       lightbox.style.left = delta + 'px';
       lightbox.style.opacity = String(0.15 * (delta / menuWidth));
       var blur = (delta / menuWidth);
-      toggleFilter(blur); 
+      // toggleFilter(blur); 
     }
     else if (menuVisible) {
       var delta = (-menuWidth > e.deltaX) ? -menuWidth : e.deltaX;
@@ -218,7 +218,7 @@
       lightbox.style.left = (menuWidth + delta) + 'px';
       lightbox.style.opacity = String(0.15 * (1 + (delta / menuWidth)));
       var blur = 1 + (delta / menuWidth);
-      toggleFilter(blur);
+      // toggleFilter(blur);
     }
   }
 

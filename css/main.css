@@ -64,11 +64,11 @@ li { list-style-type: none }
       display: none;
     }
     #layout.active > #content {
-      -webkit-filter: blur(1px);
-      -moz-filter: blur(1px);
-      -o-filter: blur(1px);
-      -ms-filter: blur(1px);
-      filter: blur(1px);
+      /* -webkit-filter: blur(1px); */
+      /* -moz-filter: blur(1px); */
+      /* -o-filter: blur(1px); */
+      /* -ms-filter: blur(1px); */
+      /* filter: blur(1px); */
     }
 
 /*----------------------------------------------------------------------------*/
