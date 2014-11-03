@@ -139,8 +139,8 @@ li { list-style-type: none }
   bottom: 0;
   width: 50px;
   background: transparent;
-  overflow-y: auto;
-  visibility: hidden;
+  /* overflow-y: auto; */
+  /* visibility: hidden; */
 }
 
 #menu-drag-inner {
