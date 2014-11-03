@@ -58,7 +58,6 @@ li { list-style-type: none }
       left: 270px;
   }
     #layout.active > #menu {
-      position: fixed;
       left: 270px;
     }
     #layout.active > #menu > #menu-drag {
@@ -76,7 +75,7 @@ li { list-style-type: none }
 /* Sidebar menu                                                               */
 /*----------------------------------------------------------------------------*/
 #menu {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -140,8 +139,8 @@ li { list-style-type: none }
   bottom: 0;
   width: 50px;
   background: transparent;
-  /* overflow-y: auto; */
-  /* visibility: hidden; */
+  overflow-y: auto;
+  visibility: hidden;
 }
 
 #menu-drag-inner {

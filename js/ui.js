@@ -192,7 +192,6 @@
     }
     removeTransitions();
     lightbox.style.display = 'block';
-    menu.style.position = 'fixed';
   }
 
   /* Fluidly move the menu and layout during pan on non-desktop devices */
