@@ -26,6 +26,13 @@
   /*-----------*/
   /* Add or remove 'active' class from #layout */
   function toggleActive() {
+    if (locked) {
+      return;
+    }
+    locked = true;
+    setTimeout(function() {
+      locked = false;
+    }, 500);
     var classes = layout.className.split(/\s+/),
         length = classes.length;
 
@@ -39,8 +46,10 @@
     // If layout was not already active, reveal menu and blur content
     if (length === classes.length) {
       classes.push('active');
-      lightbox.style.display = 'block';
       menuVisible = true;
+      body.style.position = 'fixed';
+      body.style.overflow = 'hidden';
+      lightbox.style.display = 'block';
 
       // Separate timeouts because of Firefox bug where opacity doesn't
       // transition when display is also changed
@@ -52,6 +61,8 @@
     // If layout was already active, hide menu and remove blur
     else {
       menuVisible = false;
+      body.style.position = null;
+      body.style.overflow = null;
       lightbox.style.opacity = '0';
       lightbox.style.left = '0px';
       setTimeout(function() {
@@ -60,6 +71,7 @@
     }
 
     layout.className = classes.join(' ');
+    tabOrderToggle();
   }
 
   /* Add or remove menu links from tab order */
@@ -83,20 +95,13 @@
   }
 
   /* Menu animation */
-  menuLink.onclick = function () {
-    console.log('clicked');
+  function menuFlyout() {
     if (body.clientWidth <= menuCutoff) {
-      if (!locked) {
-        locked = true;
-        toggleActive();
-        tabOrderToggle();
-        setTimeout(function() {
-          locked = false;
-        }, 500);
-      }
+      toggleActive();
     }
-  };
-  lightbox.onclick = menuLink.onclick;
+  }
+  menuLink.onclick = menuFlyout;
+  lightbox.onclick = menuFlyout;
 
   /* Remove active state from layout if screen resizes */
   window.onresize = function() {
@@ -138,22 +143,48 @@
     }
   }
 
+  function toggleFilter(blur) {
+    var value;
+    if (blur === -1) {
+      value = null;
+    }
+    else if (blur === 0) {
+      value = 'none';
+    }
+    else {
+      value = 'blur(' + blur + 'px)';
+    }
+    content.style['filter'] = value;
+    content.style['-moz-filter'] = value;
+    content.style['-webkit-filter'] = value;
+    content.style['-o-filter'] = value;
+    content.style['-ms-filter'] = value;
+  }
+
   /* Hammer.js touch handlers */
   delete Hammer.defaults.cssProps.userSelect; /* Allow users to select text */
   var menuPan = new Hammer(menu);
   menuPan.on('panstart', panstart);
   menuPan.on('panmove', panmove);
   menuPan.on('panend', panend);
+
+  function addPanHandlers(hammers) {
+    for (var i = 0; i < hammers.length; i++) {
+      var element = hammers[i].element;
+      hammers[i].on('panstart', function(e) {
+        element.onclick = null;
+        panstart(e);
+      });
+      hammers[i].on('panmove', panmove);
+      hammers[i].on('panend', function(e) {
+        panend(e);
+        element.onclick = menuFlyout;
+      });
+    }
+  }
   var lightboxPan = new Hammer(lightbox);
-  lightboxPan.on('panstart', panstart);
-  lightboxPan.on('panmove', function(e) {
-    lightbox.onclick = null;
-    panmove(e);
-  });
-  lightboxPan.on('panend', function(e) {
-    panend(e);
-    lightbox.onclick = menuLink.onclick;
-  });
+  var menuLinkPan = new Hammer(menuLink);
+  addPanHandlers([ lightboxPan, menuLinkPan ]);
 
   function panstart(e) {
     if (e.pointerType === 'mouse') {
@@ -174,18 +205,20 @@
       delta = (delta < 0) ? 0 : delta;
       layout.style.left = delta + 'px';
       menu.style.left = delta + 'px';
-      menuLink.style.left = delta + 'px';
       lightbox.style.left = delta + 'px';
       lightbox.style.opacity = String(0.15 * (delta / menuWidth));
+      var blur = (delta / menuWidth);
+      toggleFilter(blur); 
     }
     else if (menuVisible) {
       var delta = (-menuWidth > e.deltaX) ? -menuWidth : e.deltaX;
       delta = (delta > 0) ? 0 : delta;
       layout.style.left = (menuWidth + delta) + 'px';
       menu.style.left = (menuWidth + delta) + 'px';
-      menuLink.style.left = (menuWidth + delta) + 'px';
       lightbox.style.left = (menuWidth + delta) + 'px';
       lightbox.style.opacity = String(0.15 * (1 + (delta / menuWidth)));
+      var blur = 1 + (delta / menuWidth);
+      toggleFilter(blur);
     }
   }
 
@@ -197,14 +230,17 @@
     addTransitions();
     layout.style.left = null;
     menu.style.left = null;
-    menuLink.style.left = null;
     lightbox.style.left = null;
+    toggleFilter(-1);
     if (!menuVisible) {
       if (e.deltaX > 135) {
         toggleActive();
       }
       else {
         lightbox.style.opacity = '0';
+        setTimeout(function() {
+          lightbox.style.display = 'none';
+        }, 500);
       }
     }
     else if (menuVisible) {
@@ -217,7 +253,6 @@
     }
   }
 
-  tabOrderToggle(); /* Is this in the right place?? */
 
   /* Add transitions for menu to push in and out, but wait for page to draw */
   document.addEventListener('DOMContentLoaded', function(e) {
@@ -227,6 +262,7 @@
     setTimeout(function() {
       addTransitions();
     }, 200);
+    tabOrderToggle(); 
   });
 
 }(this, this.document));

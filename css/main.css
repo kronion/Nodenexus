@@ -12,13 +12,13 @@
 html, body { height: 100%; }
 
 body {
-  position: fixed; /* Hold body still in the viewframe */
+  /* position: fixed; /1* Hold body still in the viewframe *1/ */
   width: 100%;
   min-width: 320px;
   background: #fff;
   font-size: small; /* Define all font sizes relatively */
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  overflow: hidden; /* Helps with performance on mobile */
+  /* overflow: hidden; /1* Helps with performance on mobile *1/ */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -63,15 +63,12 @@ li { list-style-type: none }
     #layout.active > #menu > #menu-drag {
       display: none;
     }
-    #layout.active > #menu-link {
-      left: 270px;
-    }
     #layout.active > #content {
-      -webkit-filter: blur(0.7px);
-      -moz-filter: blur(0.7px);
-      -o-filter: blur(0.7px);
-      -ms-filter: blur(0.7px);
-      filter: blur(0.7px);
+      -webkit-filter: blur(1px);
+      -moz-filter: blur(1px);
+      -o-filter: blur(1px);
+      -ms-filter: blur(1px);
+      filter: blur(1px);
     }
 
 /*----------------------------------------------------------------------------*/
@@ -109,7 +106,6 @@ li { list-style-type: none }
   bottom: 0;
   width: 270px;
   color: #fff;
-  background: #000;
   overflow-y: auto; 
 }
   #menu-content > .pure-menu {
@@ -146,7 +142,7 @@ li { list-style-type: none }
 
 /* Menu link for responsive toggle */
 #menu-link {
-  position: fixed;
+  position: absolute;
   display: block; 
   top: 0;
   left: 0; 
