@@ -46,6 +46,7 @@
     // If layout was not already active, reveal menu and blur content
     if (length === classes.length) {
       classes.push('active');
+      menu.className = 'active';
       menuVisible = true;
       body.style.position = 'fixed';
       body.style.overflow = 'hidden';
@@ -55,16 +56,15 @@
       // transition when display is also changed
       setTimeout(function() {
         lightbox.style.opacity = '0.15';
-        lightbox.style.left = '270px';
       }, 50);
     }
     // If layout was already active, hide menu and remove blur
     else {
+      menu.className = '';
       menuVisible = false;
       body.style.position = null;
       body.style.overflow = null;
       lightbox.style.opacity = '0';
-      lightbox.style.left = '0px';
       setTimeout(function() {
         lightbox.style.display = 'none';
       }, 500);
@@ -119,7 +119,6 @@
       layout.className = classes.join(' ');
       menuVisible = false;
       lightbox.style.opacity = '0';
-      lightbox.style.left = '0px';
       setTimeout(function() {
         lightbox.style.display = 'none';
       }, 500);
@@ -199,13 +198,12 @@
     if (e.pointerType === 'mouse') {
       return;
     }
-    var menuWidth = menu.clientWidth - 1; // Due to stupid Chrome overflow fix
+    var menuWidth = menu.clientWidth;
     if (!menuVisible) {
       var delta = (e.deltaX > menuWidth) ? menuWidth : e.deltaX;
       delta = (delta < 0) ? 0 : delta;
       layout.style.left = delta + 'px';
       menu.style.left = delta + 'px';
-      lightbox.style.left = delta + 'px';
       lightbox.style.opacity = String(0.15 * (delta / menuWidth));
       var blur = (delta / menuWidth);
       // toggleFilter(blur); 
@@ -215,7 +213,6 @@
       delta = (delta > 0) ? 0 : delta;
       layout.style.left = (menuWidth + delta) + 'px';
       menu.style.left = (menuWidth + delta) + 'px';
-      lightbox.style.left = (menuWidth + delta) + 'px';
       lightbox.style.opacity = String(0.15 * (1 + (delta / menuWidth)));
       var blur = 1 + (delta / menuWidth);
       // toggleFilter(blur);
@@ -230,7 +227,6 @@
     addTransitions();
     layout.style.left = null;
     menu.style.left = null;
-    lightbox.style.left = null;
     toggleFilter(-1);
     if (!menuVisible) {
       if (e.deltaX > 135) {
