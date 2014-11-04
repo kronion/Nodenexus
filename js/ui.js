@@ -129,18 +129,22 @@
       layout.className = classes.join(' ');
       menuVisible = false;
       lightbox.style.opacity = '0';
-      menuLink.style.opacity = '0';
+      setTimeout(function() {
+        menuLink.style.opacity = '0';
+      }, 200);
       setTimeout(function() {
         lightbox.style.display = 'none';
-        menuLink.style.display = 'none';
       }, 500);
+      setTimeout(function() {
+        menuLink.style.display = 'none';
+      }, 700);
     }
     else {
       menuPan.set({ enable: true });
       menuLink.style.display = 'block';
       setTimeout(function() {
         menuLink.style.opacity = '1';
-      }, 500);
+      }, 700);
     }
     tabOrderToggle();
   };
@@ -270,6 +274,8 @@
   document.addEventListener('DOMContentLoaded', function(e) {
     if (body.clientWidth > menuCutoff) {
       menuPan.set({ enable: false });
+      menuLink.style.opacity = '0';
+      menuLink.style.display = 'none';
     }
     setTimeout(function() {
       addTransitions();
