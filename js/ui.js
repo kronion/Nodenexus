@@ -48,9 +48,11 @@
       classes.push('active');
       menu.className = 'active';
       menuVisible = true;
-      body.style.position = 'fixed';
-      body.style.overflow = 'hidden';
-      lightbox.style.display = 'block';
+      setTimeout(function() {
+        body.style.position = 'fixed';
+        body.style.overflow = 'hidden';
+        lightbox.style.display = 'block';
+      }, 10);
 
       // Separate timeouts because of Firefox bug where opacity doesn't
       // transition when display is also changed
@@ -62,8 +64,10 @@
     else {
       menu.className = '';
       menuVisible = false;
-      body.style.position = null;
-      body.style.overflow = null;
+      setTimeout(function() {
+        body.style.position = null;
+        body.style.overflow = null;
+      }, 50);
       lightbox.style.opacity = '0';
       setTimeout(function() {
         lightbox.style.display = 'none';
@@ -81,7 +85,7 @@
     if (body.clientWidth > menuCutoff || menuVisible) {
       menuTabIndex = 0;
     }
-    if (body.clientWidth < menuCutoff && menuVisible) {
+    if (body.clientWidth <= menuCutoff && menuVisible) {
       contentTabIndex = -1;
     }
     var menuLinks = document.querySelectorAll('#menu a');
@@ -92,6 +96,7 @@
     for (var i = 0; i < contentLinks.length; i++) {
       contentLinks[i].tabIndex = contentTabIndex;
     }
+    menuLink.tabIndex = 0;
   }
 
   /* Menu animation */
@@ -102,6 +107,11 @@
   }
   menuLink.onclick = menuFlyout;
   lightbox.onclick = menuFlyout;
+  menuLink.onkeypress = function(e) {
+    if (e.keyCode === 13) {
+      menuFlyout();
+    }
+  };
 
   /* Remove active state from layout if screen resizes */
   window.onresize = function() {
@@ -119,12 +129,18 @@
       layout.className = classes.join(' ');
       menuVisible = false;
       lightbox.style.opacity = '0';
+      menuLink.style.opacity = '0';
       setTimeout(function() {
         lightbox.style.display = 'none';
+        menuLink.style.display = 'none';
       }, 500);
     }
     else {
       menuPan.set({ enable: true });
+      menuLink.style.display = 'block';
+      setTimeout(function() {
+        menuLink.style.opacity = '1';
+      }, 500);
     }
     tabOrderToggle();
   };
