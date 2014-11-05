@@ -33,7 +33,8 @@ code {
 /* This causes multiline contents to honor padding */
 pre > code {
   display: block;
-  overflow: scroll;
+  padding: 0.8em 0.6em;
+  overflow-x: auto;
   line-height: 1.25em;
 }
 
@@ -352,7 +353,6 @@ li { list-style-type: none }
 
 .post pre {
   margin: 1em 0;
-  padding: 0 .4em;
   background: #ddd;
 }
   /* Terminal style. Make a plugin for this! */
