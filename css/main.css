@@ -127,17 +127,10 @@ li { list-style-type: none }
   position: absolute;
   display: block;
   top: 0;
-  right: -50px;
+  right: -15px;
   bottom: 0;
-  width: 50px;
+  width: 15px;
   background: transparent;
-  /* overflow-y: auto; */
-  /* visibility: hidden; */
-}
-
-#menu-drag-inner {
-  width: 100%;
-  visibility: visible;
 }
 
 /* Menu link for responsive toggle */
