@@ -117,6 +117,7 @@
   window.onresize = function() {
     if (body.clientWidth > menuCutoff) {
       menuPan.set({ enable: false });
+      menuVisible = true;
       var classes = layout.className.split(/\s+/),
           length = classes.length;
       for(i = 0; i < length; i++) {
@@ -126,7 +127,6 @@
         }
       }
       layout.className = classes.join(' ');
-      menuVisible = false;
       lightbox.style.opacity = '0';
       setTimeout(function() {
         menuLink.className = 'fade';
@@ -140,6 +140,7 @@
     }
     else {
       menuPan.set({ enable: true });
+      menuVisible = false;
       if (menuLink.className === 'hide') {
         menuLink.className = 'fade';
       }
