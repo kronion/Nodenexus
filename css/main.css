@@ -181,6 +181,13 @@ li { list-style-type: none }
   #menu-link > span:after {
     margin-top: 0.6em;
   }
+  #menu-link.fade {
+    display: block;
+    opacity: 0;
+  }
+  #menu-link.hide {
+    display: none;
+  }
 
 /*----------------------------------------------------------------------------*/
 /* Social icons                                                               */

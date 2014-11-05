@@ -119,7 +119,6 @@
       menuPan.set({ enable: false });
       var classes = layout.className.split(/\s+/),
           length = classes.length;
-
       for(i = 0; i < length; i++) {
         if (classes[i] === 'active') {
           classes.splice(i, 1);
@@ -130,21 +129,23 @@
       menuVisible = false;
       lightbox.style.opacity = '0';
       setTimeout(function() {
-        menuLink.style.opacity = '0';
-      }, 200);
-      setTimeout(function() {
+        menuLink.className = 'fade';
         lightbox.style.display = 'none';
       }, 500);
       setTimeout(function() {
-        menuLink.style.display = 'none';
-      }, 700);
+        if (menuVisible) {
+          menuLink.className = 'hide';
+        }
+      }, 1000);
     }
     else {
       menuPan.set({ enable: true });
-      menuLink.style.display = 'block';
+      if (menuLink.className === 'hide') {
+        menuLink.className = 'fade';
+      }
       setTimeout(function() {
-        menuLink.style.opacity = '1';
-      }, 700);
+        menuLink.className = '';
+      }, 500);
     }
     tabOrderToggle();
   };
@@ -160,24 +161,6 @@
     for (var i = 0; i < transElements.length; i++) {
       transElements[i].style.transition = "none";
     }
-  }
-
-  function toggleFilter(blur) {
-    var value;
-    if (blur === -1) {
-      value = null;
-    }
-    else if (blur === 0) {
-      value = 'none';
-    }
-    else {
-      value = 'blur(' + blur + 'px)';
-    }
-    content.style['filter'] = value;
-    content.style['-moz-filter'] = value;
-    content.style['-webkit-filter'] = value;
-    content.style['-o-filter'] = value;
-    content.style['-ms-filter'] = value;
   }
 
   /* Hammer.js touch handlers */
@@ -226,7 +209,6 @@
       menu.style.left = delta + 'px';
       lightbox.style.opacity = String(0.15 * (delta / menuWidth));
       var blur = (delta / menuWidth);
-      // toggleFilter(blur); 
     }
     else if (menuVisible) {
       var delta = (-menuWidth > e.deltaX) ? -menuWidth : e.deltaX;
@@ -235,7 +217,6 @@
       menu.style.left = (menuWidth + delta) + 'px';
       lightbox.style.opacity = String(0.15 * (1 + (delta / menuWidth)));
       var blur = 1 + (delta / menuWidth);
-      // toggleFilter(blur);
     }
   }
 
@@ -247,7 +228,6 @@
     addTransitions();
     layout.style.left = null;
     menu.style.left = null;
-    toggleFilter(-1);
     if (!menuVisible) {
       if (e.deltaX > 135) {
         toggleActive();
@@ -274,8 +254,7 @@
   document.addEventListener('DOMContentLoaded', function(e) {
     if (body.clientWidth > menuCutoff) {
       menuPan.set({ enable: false });
-      menuLink.style.opacity = '0';
-      menuLink.style.display = 'none';
+      menuLink.className = 'hide';
     }
     setTimeout(function() {
       addTransitions();
