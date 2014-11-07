@@ -24,6 +24,22 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
+figure {
+  display: inline-block;
+  background: #ddd;
+  overflow: auto;
+}
+
+img, figcaption {
+  max-width: 97%;
+  margin: 5px auto;
+}
+
+img {
+  display: block;
+  max-height: 75vh;
+}
+
 code {
   padding: 0.1em 0.2em;
   background: #ddd;
@@ -321,10 +337,6 @@ li { list-style-type: none }
   text-transform: uppercase;
 }
 
-.posts h2 {
-  margin-top: 1em;
-}
-
 .posts > li > a:hover > h1,
 .posts > li > a:focus > h1 {
   text-decoration: underline;
@@ -342,6 +354,10 @@ li { list-style-type: none }
 
 .post p {
   margin: 1em 0;
+}
+
+.post > .figure-wrap {
+  text-align: center;
 }
 
 .post pre {
