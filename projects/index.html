@@ -10,7 +10,6 @@
     The following is an (incomplete) list of things I've made or continue to hack on.
     <h2>Lucidity</h2>
     <p class='meta'>Novemeber 2013 &middot; <a href='www.nodenexus.com:3000'>www.nodenexus.com:3000</a></p>
-    <p>Blah blah</p>
     <div class='figure-wrap'>
       <figure>
         <img src='/assets/img/lucidity.jpg'/>
@@ -19,8 +18,19 @@
         </figcaption>
       </figure>
     </div>
-    <br>
-    <h2></h2>
-    <p>Blah blah</p>
+    <p>
+      Lucidity began as an excuse to make a WebSockets application for an introductory web development class, which I was teaching at the time. 
+      I wanted to write an application which the students could use throughout the class before ultimately making it themselves. 
+      The original backend was a mere twelve lines of code, but it quickly grew to implement many popular features of chat clients such as IRC and Twitch chat. 
+      Lucidity can be embedded in other applications and allows for customization by both clients and administrators. 
+      Check it out below!
+    </p>
+    <div class='load-in'>
+      <iframe src='http://nodenexus.com:3000' scrolling='no'></iframe>
+    </div>
   </div>
 </div>
+<script src='/js/iframeResizer.min.js'></script>
+<script>
+iFrameResize({ 'heightCalculationMethod': 'lowestElement' });
+</script>
