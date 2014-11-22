@@ -15,13 +15,14 @@ body {
   width: 100%;
   min-width: 320px;
   background: #fff;
-  font-size: small; /* Define all font sizes relatively */
+  font-size: 15px; /* Define all other font sizes relatively */
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', Helvetica, sans-serif;
   font-weight: 300;
+  line-height: 1em;
 }
 
 figure {
@@ -116,28 +117,32 @@ li { list-style-type: none }
   color: #fff;
   overflow-y: auto; 
 }
-  #menu-content > .pure-menu {
-    position: absolute;
-    top: 100px;
-    width: 100%;
-    border: none;
-    background: transparent;
+
+.pure-menu {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+  border: none !important;
+  background: transparent !important;
+}
+  /* Light separating border between menu groups */
+  .pure-menu > ul {
+    border-top: 1px solid #333;
   }
-    /* Light separating border between menu groups */
-    #menu-content > .pure-menu > ul {
-      font-size: smaller;
-      border-top: 1px solid #333;
-    }
-      /* Menu hover/focus color */
-      #menu-content > .pure-menu li > a:hover,
-      #menu-content > .pure-menu li > a:focus {
-        background: #333;
-        text-decoration: none;
-      }
-      /* Selected menu item */
-      #menu-content > .pure-menu li > a.pure-menu-selected {
-        background: #555;
-      }
+
+  .pure-menu li > a {
+    white-space: initial;
+  }
+  /* Menu hover/focus color */
+  .pure-menu li > a:hover,
+  .pure-menu li > a:focus {
+    background: #333;
+    text-decoration: none;
+  }
+  /* Selected menu item */
+  .pure-menu li > a.pure-menu-selected {
+    background: #555;
+  }
 
 #menu-drag {
   position: absolute;
@@ -297,7 +302,7 @@ li { list-style-type: none }
   }
   .logo > h3 {
     position: absolute;
-    top: 56px;
+    top: 61px;
     left: 120px;
     font-size: larger;
   }
@@ -323,7 +328,7 @@ li { list-style-type: none }
 #content {
   display: block;
   margin: 0 auto;
-  padding: 0 5em;
+  padding: 0 4em;
   max-width: 800px;
   line-height: 1.75em;
   overflow: auto; /* This causes div to wrap child margins */
@@ -390,7 +395,7 @@ li { list-style-type: none }
   text-align: center;
 }
   .pure-paginator .pure-button {
-    padding: .7em 1.2em;
+    padding: .7em 1em;
   }
   .pure-paginator > li > a {
     color: #000;
@@ -462,7 +467,7 @@ li { list-style-type: none }
 @media (max-width: 480px) {
   .logo {
     width: 270px;
-    font-size: x-small;
+    font-size: 11px;
   }
     .logo svg {
       width: 75px;
@@ -472,13 +477,13 @@ li { list-style-type: none }
       left: 80px;
     }
     .logo > h3 {
-      top: 44px;
+      top: 50px;
     }
     .pages {
       top: 59px;
     }
 
-  .posts {
+  #content {
     font-size: smaller;
   }
 }
@@ -501,14 +506,10 @@ li { list-style-type: none }
       line-height: 1.9em;
     }
 
-  .posts {
-    font-size: x-small;
-    line-height: 1.75em;
+  #content {
+    font-size: 11px;
   }
   
-  /* .pure-paginator { */
-  /*   font-size: xx-small; */
-  /* } */
   .button-hidden {
     display: none;
   }
