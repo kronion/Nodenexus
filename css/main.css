@@ -328,7 +328,7 @@ li { list-style-type: none }
 #content {
   display: block;
   margin: 0 auto;
-  padding: 0 4em;
+  padding: 0 5em;
   max-width: 800px;
   line-height: 1.75em;
   overflow: auto; /* This causes div to wrap child margins */
