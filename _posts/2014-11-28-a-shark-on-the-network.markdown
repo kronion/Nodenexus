@@ -48,7 +48,7 @@ Of course, Wireshark isn't the easiest tool to use when it comes to actually ana
 
 Assuming you downloaded Wireshark, You already have just the tool for the job, called Tshark. Tshark provides CLI (command line interface) support for most of the actions you can do in Wireshark, making it possible to integrate network sniffing into your programs. The only catch is that, depending on how you installed Wireshark, You may have to find the Tshark binary and add its location to your PATH in order to use it.[^3]
 
-Let me demonstrate just how powerful Tshark can be. A few weeks ago, I won third place in HackPrinceton's software track for a tool I called [HostShark][hostshark]. HostShark sniffs the network for outgoing web traffic, both HTTP and HTTPS, and visualizes the hostnames of the traffic destinations using [D3][d3]. I used Tshark to capture packets, extract the necessary header fields, and pipe the data to a Python program for further processing. Incredibly, that entire series of operations was performed in a single line of bash:
+Let me demonstrate just how powerful Tshark can be. A few weeks ago at HackPrinceton, I presented a tool I called [HostShark][hostshark]. HostShark sniffs the network for outgoing web traffic, both HTTP and HTTPS, and visualizes the hostnames of the traffic destinations using [D3][d3]. I used Tshark to capture packets, extract the necessary header fields, and pipe the data to a Python program for further processing. Incredibly, that entire series of operations was performed in a single line of bash:
 
 <pre class='terminal'><code>$ tshark -lIY "tcp.port==443 or http.request" -T fields -E separator="|" -e ip.dst -e http.host 2> /dev/null | python process.py</code></pre>
 
