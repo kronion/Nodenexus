@@ -1,11 +1,12 @@
 name: NODENEXUS
-markdown: 'redcarpet'
+markdown: 'kramdown'
 redcarpet:
     extensions: 
       -
         'smart'
 highlighter: 'pygments'
 paginate: 5
+permalink: 'pretty'
 defaults:
   -
     scope:

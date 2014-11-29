@@ -22,12 +22,12 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', Helvetica, sans-serif;
   font-weight: 300;
-  line-height: 1em;
 }
 
 figure {
   display: inline-block;
   background: #ddd;
+  text-align: left;
   overflow: auto;
 }
 
@@ -38,7 +38,6 @@ img, figcaption {
 
 img {
   display: block;
-  max-height: 75vh;
 }
 
 code {
@@ -50,7 +49,7 @@ code {
 /* This causes multiline contents to honor padding */
 pre > code {
   display: block;
-  padding: 0.8em 0.6em;
+  padding: 1.1em 0.6em;
   overflow-x: auto;
   line-height: 1.25em;
 }
@@ -59,7 +58,13 @@ a { color: #ee7f2d; text-decoration: none; }
 a:hover   { text-decoration: underline; }
 a:visited { color: #eeaf2d; }
 
-li { list-style-type: none }
+ul > li { list-style-type: none }
+
+hr {
+  border-style: solid;
+  border-width: 1px;  
+  color: #ddd;
+}
 
 /*----------------------------------------------------------------------------*/
 /* Layout (menu and main content)                                             */
@@ -294,7 +299,7 @@ li { list-style-type: none }
   }
   .logo h1 {
     position: absolute;
-    top: 12px;
+    top: 10px;
     left: 119px;
     color: #000;
     font-size: 2.8em; /* Keywords don't go large enough */
@@ -302,7 +307,7 @@ li { list-style-type: none }
   }
   .logo > h3 {
     position: absolute;
-    top: 60px;
+    top: 55px;
     left: 120px;
     font-size: larger;
   }
@@ -367,6 +372,7 @@ li { list-style-type: none }
 }
 
 .post > .figure-wrap {
+  margin: 1em 0;
   text-align: center;
 }
 
@@ -384,12 +390,16 @@ li { list-style-type: none }
   }
 
 /* This affects code blocks only */
-.post code > span {
-  font-size: 80%;
-}
+.post code > span { font-size: 80% }
 
-.post ul, .post ol {
-  margin-left: 3em;
+.post ul, .post ol { margin-left: 3em }
+
+.post li { margin: 1em 0 }
+
+
+.footnotes {
+  border-top: 2px solid #ddd;
+  font-size: smaller;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -483,7 +493,7 @@ li { list-style-type: none }
       left: 80px;
     }
     .logo > h3 {
-      top: 50px;
+      top: 46px;
     }
     .pages {
       top: 59px;
