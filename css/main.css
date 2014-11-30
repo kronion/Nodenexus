@@ -336,7 +336,7 @@ hr {
   padding: 0 5em;
   max-width: 800px;
   line-height: 1.75em;
-  overflow: auto; /* This causes div to wrap child margins */
+  /* overflow: auto; /1* This causes div to wrap child margins *1/ */
 }
 
 /*----------------------------------------------------------------------------*/
@@ -364,6 +364,7 @@ hr {
 
 .post p {
   margin: 1em 0;
+  word-break: break-word;
 }
 
 .post .meta {
