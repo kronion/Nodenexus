@@ -26,6 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 
 figure {
   display: inline-block;
+  width: 100%;
   background: #ddd;
   text-align: left;
   overflow: auto;
