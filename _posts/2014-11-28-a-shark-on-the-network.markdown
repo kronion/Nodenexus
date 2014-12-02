@@ -3,7 +3,7 @@ title:  "A Shark on the Network"
 excerpt: "Since the Snowden leaks, revelations about government cyberweapons have the public talking about metadata collection. I began to wonder how easy it would be for anybody to collect metadata on a standard WiFi network. Enter Wireshark..."
 ---
 
-DISCLAIMER: I do not condone monitoring network traffic with intent to spy or otherwise cause harm to people. My interest in the techniques described below is academic. I write in the hope that I can improve Internet security, or at least increase public awareness of vulnerabilities. If you are attempting to replicate my work, please be careful to do it in a controlled setting, such as your own home. Despite [court rulings like this one][ruling], the legality of packet sniffing on public networks is very murky, and you may get in a lot of trouble. Either way, people will think it's creepy.
+DISCLAIMER: I do not condone monitoring network traffic with intent to spy or otherwise cause harm to people. My interest in the techniques described below is academic. I write in the hope that I can improve Internet security, or at least increase public awareness of vulnerabilities. If you are attempting to replicate my work, please be careful to do it in a controlled setting, such as your own home. Despite [court rulings like this one][ruling], the legality of packet sniffing on public networks is very murky, and you may get in a lot of trouble.
 
 ---
 
