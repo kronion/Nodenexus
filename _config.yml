@@ -1,4 +1,6 @@
 name: NODENEXUS
+description: A Blog by Collin Stedman
+url: http://blog.nodenexus.com
 markdown: 'kramdown'
 redcarpet:
     extensions: 
