@@ -11,7 +11,7 @@ title: NODENEXUS
       <div class='post'>
         {% if post.excerpt != '' %}
           {% capture link %} <a href='{{ post.url }}'>Continue</a></p>{% endcapture %}
-          {{ post.excerpt | replace_first:'</p>',link | markdownify }}
+          {{ post.excerpt | markdownify | replace_first:'</p>',link }}
         {% else %}
           {{ post.content }}
         {% endif %}
