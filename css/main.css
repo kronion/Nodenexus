@@ -225,7 +225,7 @@ hr {
   }
   .social > hr {
     position: absolute;
-    top: 20px;
+    top: 15px;
     width: 25px;
     height: 5px;
     border-style: solid;
@@ -245,21 +245,11 @@ hr {
     left: 150px;
   }
 
-.icon-github-circled {
-  font-size: 36px;
+.icon-github, .icon-twitter, .icon-feed {
+  font-size: 35px;
 }
-/* Unfortunately, the three icons do not come from the same font, so the kerning
- * of the circles isn't uniform. In order to space the circles evenly, negative
- * margins were applied to the left and right of the center circle until
- * neighboring circles touched on the edges. Then 20px were added to each side
- * to create the spacing. */
-.icon-twitter-circled {
-  margin-left: 13px;
-  margin-right: 15px;
-  font-size: 33px;
-}
-.icon-linkedin-circled {
-  font-size: 33px;
+.icon-twitter {
+  margin: 0 15px;
 }
 
 /*----------------------------------------------------------------------------*/
