@@ -336,6 +336,7 @@ hr {
 .posts h1, .posts h2, .posts h3, .posts h4, .posts h5, .posts h6 {
   display: inline-block;
   text-transform: uppercase;
+  line-height: 1em;
 }
 
 .posts > li > a:hover > h1,
