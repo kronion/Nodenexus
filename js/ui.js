@@ -47,6 +47,7 @@
     if (length === classes.length) {
       classes.push('active');
       menu.className = 'active';
+      menuLink.classList.add('active');
       menuVisible = true;
       setTimeout(function() {
         body.style.position = 'fixed';
@@ -63,6 +64,7 @@
     // If layout was already active, hide menu and remove blur
     else {
       menu.className = '';
+      menuLink.classList.remove('active');
       menuVisible = false;
       setTimeout(function() {
         body.style.position = null;
