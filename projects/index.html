@@ -31,7 +31,11 @@ title: Projects
     </div>
   </div>
 </div>
+<a href="#" onclick="test()">Extension</a>
 <script src='/js/iframeResizer.min.js'></script>
 <script>
 iFrameResize({ 'heightCalculationMethod': 'lowestElement' });
+function test() {
+  chrome.webstore.install();
+}
 </script>
