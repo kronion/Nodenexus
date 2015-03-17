@@ -487,16 +487,17 @@ hr {
     background: url("/assets/img/webstore+.png");
     vertical-align: text-bottom;
   }
-  .webstore.added {
-    border-color: #488500;
-    background-color: #5fb000;
-    background-image: linear-gradient(to bottom,#71bf00,#4da100);
-  }
   .webstore:hover,
   .webstore:focus {
     border-color: #4076ff;
     background-color: #5c92ff;
     background-image: linear-gradient(to bottom,#669eff,#5286ff);
+  }
+  .webstore.added {
+    border-color: #488500;
+    background-color: #5fb000;
+    background-image: linear-gradient(to bottom,#71bf00,#4da100);
+    pointer-events: none;
   }
 
 /*----------------------------------------------------------------------------*/
