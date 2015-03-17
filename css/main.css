@@ -24,6 +24,23 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
+p {
+  margin: 1em 0;
+  word-break: break-word;
+}
+
+a { color: #ee7f2d; text-decoration: none; }
+a:hover   { text-decoration: underline; }
+a:visited { color: #eeaf2d; }
+
+ul > li { list-style-type: none }
+
+hr {
+  border-style: solid;
+  border-width: 1px;  
+  color: #ddd;
+}
+
 figure {
   display: inline-block;
   width: 100%;
@@ -53,18 +70,6 @@ pre > code {
   padding: 1.1em 0.6em;
   overflow-x: auto;
   line-height: 1.25em;
-}
-
-a { color: #ee7f2d; text-decoration: none; }
-a:hover   { text-decoration: underline; }
-a:visited { color: #eeaf2d; }
-
-ul > li { list-style-type: none }
-
-hr {
-  border-style: solid;
-  border-width: 1px;  
-  color: #ddd;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -137,13 +142,17 @@ hr {
   }
 
   .pure-menu li > a {
+    padding: 6px 20px;
+    border: 0;
     white-space: initial;
   }
   /* Menu hover/focus color */
   .pure-menu li > a:hover,
   .pure-menu li > a:focus {
+    border-left: 5px solid #ee7f2d;
     background: #333;
     text-decoration: none;
+    outline: none;
   }
   /* Selected menu item */
   .pure-menu li > a.pure-menu-selected {
@@ -174,7 +183,7 @@ hr {
   opacity: 1;
   z-index: 10;
   cursor: pointer;
-  transition: .3s;
+  outline: none;
 }
   #menu-link:hover > span,
   #menu-link:hover > span:before,
@@ -352,7 +361,7 @@ hr {
 .posts h1, .posts h2, .posts h3, .posts h4, .posts h5, .posts h6 {
   display: inline-block;
   text-transform: uppercase;
-  line-height: 1em;
+  line-height: 1.1em;
 }
 
 .posts > li > a:hover > h1,
@@ -367,18 +376,9 @@ hr {
 }
 
 .meta {
+  margin: 0;
   margin-bottom: 0.5em;
   color: #777;
-}
-
-.post p {
-  margin: 1em 0;
-  word-break: break-word;
-}
-
-.post .meta {
-  margin: 0; 
-  margin-bottom: 1em;
 }
 
 .post > .figure-wrap {
