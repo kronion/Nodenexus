@@ -25,6 +25,7 @@
           chrome.webstore.install(
             "https://chrome.google.com/webstore/detail/" + btn.dataset.storeid,
             function() {
+              btn.classList.remove('checking');
               btn.classList.add('added');
               btn.tabIndex = "-1";
               btn.onclick = null;
