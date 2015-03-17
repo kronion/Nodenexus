@@ -8,6 +8,7 @@
         "https://chrome.google.com/webstore/detail/aafbnclakfldlfneckdnnaojkeepdpcg",
         function() {
           self.classList.add('added');
+          self.tabIndex = "-1";
           self.innerText = 'ADDED TO CHROME';
         },
         function() {
