@@ -19,6 +19,9 @@
       function(btn) {
         btn.innerHTML = '<div></div>ADD TO CHROME';
         btn.onclick = function() {
+          btn.blur();
+          btn.style.pointerEvents="none";
+          btn.innerText = 'CHECKING...';
           chrome.webstore.install(
             "https://chrome.google.com/webstore/detail/" + btn.dataset.storeid,
             function() {
@@ -32,8 +35,6 @@
               btn.innerHTML = '<div></div>ADD TO CHROME';
             }
           );
-          btn.style.pointerEvents="none";
-          btn.innerText = 'CHECKING...';
         };
       }.bind(this, btn),
       function(btn) {
