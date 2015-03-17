@@ -20,7 +20,7 @@
         btn.innerHTML = '<div></div>ADD TO CHROME';
         btn.onclick = function() {
           btn.blur();
-          btn.style.pointerEvents="none";
+          btn.classList.add('checking');
           btn.innerText = 'CHECKING...';
           chrome.webstore.install(
             "https://chrome.google.com/webstore/detail/" + btn.dataset.storeid,
@@ -31,7 +31,7 @@
               btn.innerText = 'ADDED TO CHROME';
             },
             function() {
-              btn.style.pointerEvents="auto";
+              btn.classList.remove('checking');
               btn.innerHTML = '<div></div>ADD TO CHROME';
             }
           );

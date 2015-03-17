@@ -461,11 +461,9 @@ hr {
 /*----------------------------------------------------------------------------*/
 .webstore {
   padding: 0 20px;
-  border: 1px solid #2d53af;
+  border: 1px solid;
   border-radius: 2px;
   color: #fff;
-  background-color: #4d7bd6;
-  background-image: linear-gradient(to bottom,#5689db,#4d7bd6);
   font-family: "Open Sans", Arial, sans-serif;
   font-size: 11px;
   font-weight: bold;
@@ -477,21 +475,29 @@ hr {
   -webkit-user-select: none;
   user-select: none;
 }
-  .webstore > div {
-    display: inline-block;
-    position: relative;
-    top: 1px;
-    width: 19px;
-    height: 17px;
-    margin-right: 7px;
-    background: url("/assets/img/webstore+.png");
-    vertical-align: text-bottom;
+  .webstore.absent {
+    border-color: #2d53af;
+    background-color: #4d7bd6;
+    background-image: linear-gradient(to bottom,#5689db,#4d7bd6);
   }
-  .webstore:hover,
-  .webstore:focus {
-    border-color: #4076ff;
-    background-color: #5c92ff;
-    background-image: linear-gradient(to bottom,#669eff,#5286ff);
+    .webstore.absent > div {
+      display: inline-block;
+      position: relative;
+      top: 1px;
+      width: 19px;
+      height: 17px;
+      margin-right: 7px;
+      background: url("/assets/img/webstore+.png");
+      vertical-align: text-bottom;
+    }
+    .webstore.absent:hover,
+    .webstore.absent:focus {
+      border-color: #4076ff;
+      background-color: #5c92ff;
+      background-image: linear-gradient(to bottom,#669eff,#5286ff);
+    }
+  .webstore.checking {
+    pointer-events: none;
   }
   .webstore.added {
     border-color: #488500;
