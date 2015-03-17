@@ -15,6 +15,7 @@
           self.innerHTML = '<div></div>ADD TO CHROME';
         }
       );
+      self.blur();
       self.innerText = 'CHECKING...';
     }
   }
