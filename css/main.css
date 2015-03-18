@@ -44,23 +44,6 @@ hr {
   color: #ddd;
 }
 
-figure {
-  display: inline-block;
-  width: 100%;
-  background: #ddd;
-  text-align: left;
-  overflow: auto;
-}
-
-img, figcaption {
-  max-width: 97%;
-  margin: 5px auto;
-}
-
-img {
-  display: block;
-}
-
 code {
   padding: 0.1em 0.2em;
   background: #ddd;
@@ -295,6 +278,30 @@ pre > code {
 }
 
 /*----------------------------------------------------------------------------*/
+/* Figures                                                                    */
+/*----------------------------------------------------------------------------*/
+.figure-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em 0;
+}
+
+figure {
+  background: #ddd;
+}
+
+img, figcaption {
+  max-width: calc(100% - 10px);
+  margin: 5px;
+}
+
+img {
+  display: block;
+}
+
+
+/*----------------------------------------------------------------------------*/
 /* Logo (SVG and text)                                                        */
 /*----------------------------------------------------------------------------*/
 .logo {
@@ -381,11 +388,6 @@ pre > code {
   color: #777;
 }
 
-.post > .figure-wrap {
-  margin: 1em 0;
-  text-align: center;
-}
-
 .post pre {
   margin: 1em 0;
   background: #ddd;
@@ -445,11 +447,20 @@ pre > code {
   line-height: 1.75em;
 }
 
+.cc-img a {
+  display: inline-block;
+}
+
+.cc-img img {
+  max-width: 100%;
+  margin: 0;
+}
+
 /*----------------------------------------------------------------------------*/
 /* Iframe for projects                                                        */
 /*----------------------------------------------------------------------------*/
 .load-in {
-
+  margin: 1em 0;
 }
 .load-in > iframe {
   width: 100%;
