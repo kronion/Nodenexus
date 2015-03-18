@@ -20,8 +20,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  display: inline-block;
   font-family: 'Montserrat', Helvetica, sans-serif;
   font-weight: 300;
+  text-transform: uppercase;
+  line-height: 1.1em;
 }
 
 p {
@@ -322,10 +325,13 @@ pre > code {
     line-height: initial;
   }
   .logo > h3 {
+    display: block;
     position: absolute;
     top: 55px;
     left: 120px;
     font-size: larger;
+    text-transform: none;
+    line-height: inherit;
   }
   .pages {
     position: absolute;
@@ -358,12 +364,6 @@ pre > code {
 /*----------------------------------------------------------------------------*/
 /* Posts                                                                      */
 /*----------------------------------------------------------------------------*/
-.posts h1, .posts h2, .posts h3, .posts h4, .posts h5, .posts h6 {
-  display: inline-block;
-  text-transform: uppercase;
-  line-height: 1.1em;
-}
-
 .posts > li > a:hover > h1,
 .posts > li > a:focus > h1 {
   text-decoration: underline;
