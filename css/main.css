@@ -288,6 +288,7 @@ pre > code {
 }
 
 figure {
+  width: 100%;
   background: #ddd;
 }
 
