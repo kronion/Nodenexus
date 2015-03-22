@@ -265,4 +265,11 @@
     tabOrderToggle(); 
   });
 
+  /* Load white image background (to allow for secondary background color */
+  var fffBg = new Image();
+  fffBg.onload = function() {
+    body.style.background = "url(" + fffBg.src + ") #ee7f2d";
+  };
+  fffBg.src = "/assets/img/white.png";
+
 }(this, this.document));
