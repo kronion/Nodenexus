@@ -14,6 +14,7 @@ html, body { height: 100%; }
 body {
   width: 100%;
   min-width: 320px;
+  box-shadow: 0 0 2em #888;
   background: #fff;
   font-size: 15px; /* Define all other font sizes relatively */
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -50,12 +51,32 @@ code {
   font-family: 'Droid Sans Mono', Courier New, monospace;
 }
 
+pre {
+  margin: 1em 0;
+  background: #ddd;
+}
+  /* Terminal style. Make a plugin for this! */
+  pre.terminal {
+    color: #FFF;
+    background: #333;
+  }
+  pre.terminal > code {
+    background: #333;
+  }
+
 /* This causes multiline contents to honor padding */
 pre > code {
   display: block;
   padding: 1.1em 0.6em;
+  font-size: 80%;
   overflow-x: auto;
   line-height: 1.25em;
+}
+
+blockquote {
+  margin: 1em 2em 1em 0;
+  padding-left: 2em;
+  border-left: 8px solid #ee7f2d;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -69,6 +90,10 @@ pre > code {
 }
   #layout.active {
       left: 270px;
+  }
+  .flex {
+    display: flex;
+    justify-content: center;
   }
 
 /*----------------------------------------------------------------------------*/
@@ -401,9 +426,6 @@ img {
   .post pre.terminal code {
     background: #333;
   }
-
-/* This affects code blocks only */
-.post code > span { font-size: 80% }
 
 .post ul, .post ol { margin-left: 3em }
 
