@@ -1,5 +1,6 @@
 ---
 title: "Shell Fu in zsh"
+excerpt: "At a university where most classes use Java, familiarity with the shell seems <a href='http://en.wikipedia.org/wiki/Bernoulli_distribution'>Bernoulli-distributed</a>: you either customize to your heart’s desire or not at all. That means that many people can increase their productivity in the shell with only basic aliases, functions, and other simple tricks. Using the Z shell, we’ll start with the low-hanging fruit by installing Oh My Zsh, move on to theme customization, and conclude with an introduction to shell functions. Welcome to the world of shell fu."
 ---
 
 Programmers are a lot like exotic car owners. We live for the cutting edge and the most efficient solutions. We're not afraid of a little (or a lot) of DIY. Some of us are actually crazy enough to [cool our rigs with liquid nitrogen in the name of clock-speed records][nitrogren]. I'm sure supercar enthusiasts would understand.
