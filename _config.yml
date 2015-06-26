@@ -3,12 +3,15 @@ description: A Blog by Collin Stedman
 url: http://blog.nodenexus.com
 markdown: 'kramdown'
 redcarpet:
-    extensions: 
+    extensions:
       -
         'smart'
 highlighter: 'pygments'
 paginate: 5
 permalink: 'pretty'
+sass:
+  style: :compressed
+  cache_location: '_sass/.sass-cache'
 defaults:
   -
     scope:

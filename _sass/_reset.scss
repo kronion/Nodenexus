@@ -1,0 +1,73 @@
+//------------------------------------------------------------------------------
+//  Global Reset
+//
+//  All rules that target tags directly should be put here.
+//  Exception: <code> and <pre>, which are styled in '_code.scss'.
+//------------------------------------------------------------------------------
+
+// Spacing reset
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: unquote(map-get($fonts, '$base'));
+}
+
+h1, h2, h3, h4, h5, h6 {
+  display: inline;
+  font-family: unquote(map-get($fonts, '$header'));
+  font-weight: 300;
+  text-transform: uppercase;
+  // line-height: 1.1em; NEEDED?
+}
+
+p {
+  margin: 1em 0;
+  word-break: break-word;
+}
+
+a { 
+  color: color('$orange');
+  text-decoration: none;
+}
+a:hover { 
+  text-decoration: underline;
+}
+a:visited {
+  color: color('$orange-light');
+}
+
+li { 
+  list-style-type: none;
+}
+
+hr {
+  border-style: solid;
+  border-width: 1px;  
+  color: color('$gray-light');
+}
+
+blockquote {
+  margin: 1em 2em 1em 0;
+  padding-left: 2em;
+  border-left: 8px solid color('$orange');
+}
+
+// Change the color of highlighted text
+::-moz-selection {
+  color: color('$white');
+  background: color('$orange');
+}
+::selection {
+  color: color('$white');
+  background: color('$orange');
+}
+// Links are already orange, so have to make sure they don't disappear
+a::-moz-selection {
+  color: color('$black');
+}
+a::selection {
+  color: color('$black');
+}

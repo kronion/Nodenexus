@@ -1,0 +1,15 @@
+{
+  "name": "Nodenexus",
+  "version": "0.0.1",
+  "description": "A Blog by Collin Stedman",
+  "homepage": "http://blog.nodenexus.com",
+  "authors": [
+    "Collin Stedman <kronion@users.noreply.github.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "modernizr": "~2.8.3",
+    "iframe-resizer": "~2.8.10",
+    "hammer.js": "~2.0.4"
+  }
+}

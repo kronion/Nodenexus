@@ -1,6 +1,21 @@
+# Output Directory #
+####################
 _site
-assets/icomoon/selection.json
-davidjbradshaw*
-.DS_Store
+
+# 3rd-party Libraries #
+#######################
+vendor
+
+# Temp Files and Caches #
+#########################
 *.swp
-Gemfile*
+_sass/.sass-cache
+
+# OS Generated Files #
+######################
+.DS_Store
+
+# Anything Else? #
+##################
+assets/icomoon/selection.json
+_posts/*test*

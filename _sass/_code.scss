@@ -1,0 +1,30 @@
+//------------------------------------------------------------------------------
+//  Code Formatting
+//
+//  Todo: Make terminal style more like my actual terminal
+//------------------------------------------------------------------------------
+
+// Wrapper for multiline blocks
+pre {
+  margin: 1em 0;
+}
+
+code {
+  padding: 0.1em 0.2em;
+  background: color('$gray-light');
+  font-family: unquote(map-get($fonts, '$code'));
+}
+
+// Pad multiline code blocks and reserve spacing/blocking
+pre > code {
+  display: block;
+  padding: 1.1em 0.6em;
+  font-size: 0.8em;
+  overflow: scroll;
+}
+
+// Terminal style
+.terminal {
+  color: color('$white');
+  background: color('$gray-dark');
+}

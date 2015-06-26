@@ -1,0 +1,161 @@
+//------------------------------------------------------------------------------
+//  Sidebar Menu
+//------------------------------------------------------------------------------
+#menu {
+  position: fixed;
+  width: 270px; 
+  height: 100%;
+  background: #000;
+  z-index: 2;
+  -webkit-overflow-scrolling: touch;
+
+  // Make the menu unselectable
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+  #menu.active {
+    transform: translate3d(270px,0,0);
+  }
+  #menu a {
+    color: #fff;
+  }
+  #menu.active > #menu-drag {
+    display: none;
+  }
+
+
+/* The menu as the user understands it (i.e. excluding the panning region */
+#menu-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  overflow-y: auto; 
+}
+
+.pure-menu {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+  border: none !important;
+  background: transparent !important;
+}
+  /* Light separating border between menu groups */
+  .pure-menu > ul {
+    border-top: 1px solid #333;
+  }
+
+  .pure-menu li > a {
+    padding: 6px 20px;
+    border: 0;
+    white-space: initial;
+  }
+  /* Menu hover/focus color */
+  .pure-menu li > a:hover,
+  .pure-menu li > a:focus {
+    border-left: 5px solid #ee7f2d;
+    background: #333;
+    text-decoration: none;
+    outline: none;
+  }
+  /* Selected menu item */
+  .pure-menu li > a.pure-menu-selected {
+    background: #555;
+  }
+
+#menu-drag {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: -25px;
+  bottom: 0;
+  width: 25px;
+  background: transparent;
+}
+
+/* Menu link for responsive toggle */
+#menu-link {
+  position: absolute;
+  display: block; 
+  top: 0;
+  left: 270px; 
+  width: 21px;
+  height: auto;
+  padding: 20px 15px;
+  background: #000;
+  font-size: 10px; /* change this value to increase/decrease button size */
+  opacity: 1;
+  z-index: 10;
+  cursor: pointer;
+  outline: none;
+}
+  #menu-link > span,
+  #menu-link > span:before,
+  #menu-link > span:after {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 0.2em;
+    border-radius: 1em;
+    background: #fff;
+    transition: 0.3s;
+  }
+  #menu-link > span:before,
+  #menu-link > span:after {
+    position: absolute;
+    margin-top: -0.6em;
+    content: " ";
+    transform-origin: 10%;
+    -webkit-transform-origin: 10%;
+    -moz-transform-origin: 10%;
+    -ms-transform-origin: 10%;
+    -o-transform-origin: 10%;
+  }
+  #menu-link > span:after {
+    margin-top: 0.6em;
+  }
+  #menu-link:hover.no-iOS > span,
+  #menu-link:hover.no-iOS > span:before,
+  #menu-link:hover.no-iOS > span:after,
+  #menu-link:focus.no-iOS > span,
+  #menu-link:focus.no-iOS > span:before,
+  #menu-link:focus.no-iOS > span:after {
+    background: #ee7f2d;
+  }
+  #menu-link.no-iOS.active > span {
+    background: transparent;
+  }
+  #menu-link.active > span {
+    background: transparent;
+  }
+  #menu-link.active > span:before,
+  #menu-link.active > span:after {
+    margin-left: 3px;
+  }
+  #menu-link.active > span:before {
+    transform: rotate3d(0, 0, 1, 45deg);
+    -webkit-transform: rotate3d(0, 0, 1, 45deg);
+    -moz-transform: rotate3d(0, 0, 1, 45deg);
+    -ms-transform: rotate3d(0, 0, 1, 45deg);
+    -o-transform: rotate3d(0, 0, 1, 45deg);
+  }
+  #menu-link.active > span:after {
+    transform: rotate3d(0, 0, 1, -45deg);
+    -webkit-transform: rotate3d(0, 0, 1, -45deg);
+    -moz-transform: rotate3d(0, 0, 1, -45deg);
+    -ms-transform: rotate3d(0, 0, 1, -45deg);
+    -o-transform: rotate3d(0, 0, 1, -45deg);
+  }
+  #menu-link.fade {
+    display: block;
+    opacity: 0;
+  }
+  #menu-link.hide {
+    display: none;
+  }
+
