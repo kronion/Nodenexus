@@ -3,7 +3,7 @@ layout: default
 ---
 <div class='posts'>
   <h1>{{ page.title }}</h1>
-  <p class="meta">{{ page.author }} &middot; {{ page.date | date_to_string }}</p>
+  <p class="meta">{{ page.date | date_to_string }}</p>
   <div class="addthis_sharing_toolbox"></div>
   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54a3bf3444d3420b" async="async"></script>
 
@@ -23,4 +23,9 @@ layout: default
     })();
   </script>
   <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  {% if page.custom_js %}
+    {% for script in page.custom_js %}
+      <script type ="text/javascript" src="{{script}}"></script>
+    {% endfor %}
+  {% endif %}
 </div>
