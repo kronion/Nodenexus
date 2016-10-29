@@ -1,5 +1,6 @@
 ---
 title: "Average Time to Check If an Array Is Sorted"
+excerpt: "Recently a colleague of mine posed a twist on a basic algorithms question. It's easy to see that the worst-case performance to check if a random n-length array is sorted is O(n). But what is the _average_ performance? Is it still linear? Sublinear? Is it a function of the length at all?"
 ---
 
 It's always a pleasure to find interesting problems hiding in seemingly mundane places. Recently a colleague of mine posed the following twist on a basic algorithms question. It's easy to see that the worst-case performance to check if a random \\(n\\)-length array is sorted is \\(O(n)\\). But what is the _average_ performance? Is it still linear? Sublinear? Is it a function of the length at all?
