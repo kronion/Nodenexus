@@ -1,5 +1,6 @@
 ---
 title:  "Improve Your Express Applications - Part 1"
+published: false
 ---
 
 Oh, Node.js. Love it or hate it, [the one true dev language of Hackathon Hackers][dev] has taken over. JavaScript, once generally reviled, is now being used to power asynchronous servers, websocket applications, asset pipelines, and [just about every programmable device under the sun][cyclon]. The LAMP stack (Linux, Apache, MySQL, PHP) has given way to the MEAN stack (MongoDB, Express, AngularJS, Node.js).
